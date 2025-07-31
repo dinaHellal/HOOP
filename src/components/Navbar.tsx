@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; // <--- سيب دي
+
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import Slider from "react-slick";
 import type { Settings } from "react-slick";
 import { useNavigate } from "react-router-dom";
