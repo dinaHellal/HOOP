@@ -22,7 +22,7 @@ export default function Signup() {
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userPassword", password);
 
-    navigate("/Home");
+    navigate("/");
   };
 
   return (
