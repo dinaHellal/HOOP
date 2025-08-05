@@ -31,7 +31,7 @@ export default function AdminOrders() {
     const savedCounter = localStorage.getItem("orders_counter");
     if (savedOrders) setOrders(JSON.parse(savedOrders));
     if (savedCounter) setCounter(Number(savedCounter));
-  }, []);
+  }, [navigate]);
 
   const saveAll = (updated: Order[], updatedCounter?: number) => {
     setOrders(updated);

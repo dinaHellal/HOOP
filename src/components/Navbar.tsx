@@ -108,7 +108,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden mt-3  px-4 space-y-3 bg-transparent  text-amber-900 pb-6">
+        <div className="md:hidden   px-4 py-5 space-y-3 bg-white  text-amber-900 pb-6">
           <Link to="/" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
             Home
           </Link>

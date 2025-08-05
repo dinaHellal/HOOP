@@ -15,10 +15,10 @@ import FeaturedCategories from "./FeaturedCategories";
 import { useCart } from "../context/CartContext";
 
 const newArrivals: Product[] = [
-  { id: "1", title: "Elegant Dress", price: "$900", image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
-  { id: "2", title: "Classic Dress", price: "$900", image: "/img45.webp", description: "Classic Dress", quantity: 1 },
-  { id: "3", title: "Modern Abaya", price: "$900", image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
-  { id: "4", title: "Stylish Cardigan", price: "$900", image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
+  { id: "1", title: "Elegant Dress", price: 900, image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
+  { id: "2", title: "Classic Dress", price: 900, image: "/img45.webp", description: "Classic Dress", quantity: 1 },
+  { id: "3", title: "Modern Abaya", price: 900, image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
+  { id: "4", title: "Stylish Cardigan", price: 900, image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
 ];
 
 const testimonials = [
@@ -123,7 +123,7 @@ export default function Home() {
                   <div className="cart text-amber-900 text-center text-2xl">
                     <button
                       onClick={() => {
-                        addToCart(product);
+                        addToCart({ ...product, price: Number(product.price) });
                         toast.success(`${product.title} added to cart!`, {
                           autoClose: 2000,
                           hideProgressBar: false,

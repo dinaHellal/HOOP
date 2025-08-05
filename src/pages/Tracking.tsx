@@ -15,10 +15,17 @@ export default function Tracking() {
   const [error, setError] = useState("");
 
   const handleTrack = () => {
+    if (!orderNumber.trim()) {
+      setError("Please enter an order number.");
+      setOrder(null);
+      return;
+    }
+
     const stored = localStorage.getItem("orders");
     if (stored) {
       const list: Order[] = JSON.parse(stored);
-      const found = list.find((o) => o.id === orderNumber);
+      const found = list.find((o) => o.id === orderNumber.trim());
+
       if (found) {
         setOrder(found);
         setError("");
@@ -27,6 +34,7 @@ export default function Tracking() {
         setError("Order not found. Please check your order number.");
       }
     } else {
+      setOrder(null);
       setError("No orders have been added yet.");
     }
   };
@@ -43,7 +51,10 @@ export default function Tracking() {
         className="w-full p-3 border rounded mb-4"
       />
 
-      <button onClick={handleTrack} className="w-full bg-amber-900 text-white py-3 rounded hover:bg-amber-800 transition">
+      <button
+        onClick={handleTrack}
+        className="w-full bg-amber-900 text-white py-3 rounded hover:bg-amber-800 transition"
+      >
         Track Order
       </button>
 
@@ -54,9 +65,12 @@ export default function Tracking() {
           <p><strong>Order ID:</strong> {order.id}</p>
           <p><strong>Name:</strong> {order.name}</p>
           <p><strong>Phone:</strong> {order.phone}</p>
-          <p><strong>Total:</strong> ${order.total}</p>
+          <p><strong>Total:</strong> ${order.total.toFixed(2)}</p>
           <p><strong>Status:</strong> {order.status}</p>
           <p><strong>Expected Delivery:</strong> {order.expectedDate}</p>
+          <p className="mt-2 text-green-700 font-semibold">
+            Your order with ID <span className="underline">{order.id}</span> is being processed.
+          </p>
         </div>
       )}
     </div>
