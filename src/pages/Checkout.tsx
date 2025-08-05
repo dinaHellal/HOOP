@@ -52,7 +52,7 @@ Address: ${address}
 
 Total: $${total.toFixed(2)}
     `;
-
+//whatsapp link
     window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
 
     clearCart();
