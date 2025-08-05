@@ -8,7 +8,6 @@ export default function Checkout() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const total = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1), 0);
@@ -43,7 +42,7 @@ export default function Checkout() {
 
     // save last order id for thank page
     localStorage.setItem("lastOrderId", newOrder.id);
-    setLastOrderId(newOrder.id);
+localStorage.setItem("lastOrderId", newOrder.id);
 
     const message = `
 Order ID: ${newOrder.id}
