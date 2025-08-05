@@ -67,6 +67,10 @@ export default function Navbar() {
               Contact
             </Link>
           </li>
+          <li>
+  <Link to="/tracking" className="hover:text-amber-400 transition">Track Order</Link>
+</li>
+
         </ul>
 
         <div className="hidden md:flex font-bold  text-amber-900 items-center gap-4">
@@ -121,6 +125,10 @@ export default function Navbar() {
           <Link to="/contact" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
             Contact
           </Link>
+            <Link to="/tracking" className="hover:text-amber-400 transition"  onClick={() => setMenuOpen(false)}>
+            Track Orde
+            r</Link>
+
           {isLoggedIn ? (
             <button
               onClick={() => {

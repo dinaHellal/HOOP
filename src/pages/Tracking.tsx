@@ -15,15 +15,18 @@ export default function Tracking() {
   const [error, setError] = useState("");
 
   const handleTrack = () => {
-    if (!orderNumber.trim()) {
-      setError("Please enter an order number.");
-      setOrder(null);
-      return;
-    }
-
     const stored = localStorage.getItem("orders");
+
     if (stored) {
-      const list: Order[] = JSON.parse(stored);
+      let list: Order[] = [];
+
+      try {
+        list = JSON.parse(stored);
+      } catch {
+        setError("Could not read saved orders.");
+        return;
+      }
+
       const found = list.find((o) => o.id === orderNumber.trim());
 
       if (found) {
@@ -31,21 +34,21 @@ export default function Tracking() {
         setError("");
       } else {
         setOrder(null);
-        setError("Order not found. Please check your order number.");
+        setError("Order not found. Please check your order ID.");
       }
     } else {
       setOrder(null);
-      setError("No orders have been added yet.");
+      setError("No orders found.");
     }
   };
 
   return (
-    <div className="max-w-xl mt-15 mx-auto p-6">
+    <div className="max-w-xl mt-20 mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Track Your Order</h1>
 
       <input
         type="text"
-        placeholder="Enter your order number (e.g. HOOP-1)"
+        placeholder="Enter Order ID (e.g. HOOP-123456)"
         value={orderNumber}
         onChange={(e) => setOrderNumber(e.target.value)}
         className="w-full p-3 border rounded mb-4"
@@ -65,12 +68,9 @@ export default function Tracking() {
           <p><strong>Order ID:</strong> {order.id}</p>
           <p><strong>Name:</strong> {order.name}</p>
           <p><strong>Phone:</strong> {order.phone}</p>
-          <p><strong>Total:</strong> ${order.total.toFixed(2)}</p>
+          <p><strong>Total:</strong> ${order.total}</p>
           <p><strong>Status:</strong> {order.status}</p>
-          <p><strong>Expected Delivery:</strong> {order.expectedDate}</p>
-          <p className="mt-2 text-green-700 font-semibold">
-            Your order with ID <span className="underline">{order.id}</span> is being processed.
-          </p>
+          <p><strong>Expected Delivery:</strong> {order.expectedDate || "-"}</p>
         </div>
       )}
     </div>

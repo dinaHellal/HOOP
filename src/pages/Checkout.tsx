@@ -2,20 +2,16 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
-function generateOrderNumber() {
-  // توليد رقم طلب عشوائي من 6 أرقام
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
 export default function Checkout() {
   const { cartItems, clearCart } = useCart();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const total = cartItems.reduce((acc, item) => acc + Number(item.price) * (item.quantity ?? 1), 0);
+  const total = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1), 0);
 
   const handleOrder = () => {
     if (!name || !email || !phone || !address) {
@@ -23,24 +19,42 @@ export default function Checkout() {
       return;
     }
 
-    const orderNumber = generateOrderNumber();
+    // get admin counter from localStorage or start from 1
+    const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
+    const newId = `HOOP-${currentCounter}`;
+
+    const newOrder = {
+      id: newId,
+      name,
+      phone,
+      total,
+      expectedDate: "",
+      status: "Processing" as const,
+    };
+
+    // append to existing orders in localStorage
+    const storedOrders = localStorage.getItem("orders");
+    const ordersArray = storedOrders ? JSON.parse(storedOrders) : [];
+    ordersArray.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(ordersArray));
+
+    // update counter
+    localStorage.setItem("orders_counter", (currentCounter + 1).toString());
+
+    // save last order id for thank page
+    localStorage.setItem("lastOrderId", newOrder.id);
+    setLastOrderId(newOrder.id);
 
     const message = `
-New Order #${orderNumber}:
+Order ID: ${newOrder.id}
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
 
-Items:
-${cartItems.map(
-  (item) => `- ${item.title} (x${item.quantity}) = $${(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}`
-).join("\n")}
-
 Total: $${total.toFixed(2)}
-`;
+    `;
 
-    const url = `https://wa.me/201004466279?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
 
     clearCart();
     navigate("/thank");
