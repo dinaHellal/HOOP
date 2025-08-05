@@ -2,6 +2,11 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
+function generateOrderNumber() {
+  // توليد رقم طلب عشوائي من 6 أرقام
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 export default function Checkout() {
   const { cartItems, clearCart } = useCart();
   const [name, setName] = useState("");
@@ -18,22 +23,25 @@ export default function Checkout() {
       return;
     }
 
+    const orderNumber = generateOrderNumber();
+
     const message = `
-New Order:
+New Order #${orderNumber}:
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
 
 Items:
-${cartItems.map((item) => `- ${item.title} (x${item.quantity}) = $${Number(item.price) * (item.quantity ?? 1)}`).join("\n")}
+${cartItems.map(
+  (item) => `- ${item.title} (x${item.quantity}) = $${(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}`
+).join("\n")}
 
-Total: $${total}
-    `;
+Total: $${total.toFixed(2)}
+`;
 
     const url = `https://wa.me/201004466279?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
 
-    // تفريغ السلة بعد الإرسال
     clearCart();
     navigate("/thank");
   };

@@ -14,6 +14,9 @@ import Banner from "./components/Banner";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import Thank from "./components/Thank";
+import Tracking from "./pages/Tracking";
+import AdminLogin from "./admin/AdminLogin";
+import AdminOrders from "./admin/AdminOrders";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/thank" element={<Thank />} />
+        <Route path="/tracking" element={<Tracking />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin-orders" element={<AdminOrders />} />
       </Routes>
 
       <ToastContainer position="top-left" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover={false} />
