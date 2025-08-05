@@ -70,7 +70,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex font-bold  text-amber-900 items-center gap-4">
-          <Link to="/cart" className="relative  flex gap-3  text-2xl hover:text-amber-400 transition">
+          <Link to="/checkout" className="relative  flex gap-3  text-2xl hover:text-amber-400 transition">
 
             {totalQuantity > 0 && <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{totalQuantity}</span>}
           </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
         </div>
 
         <div className="md:hidden flex items-center gap-4">
-          <Link to="/cart" className="relative text-amber-900 text-2xl hover:text-amber-400 transition">
+          <Link to="/checkout" className="relative text-amber-900 text-2xl hover:text-amber-400 transition">
           <CartDrawer />
             {totalQuantity > 0 && 
             <span className="absolute -top-2 -right-2 bg-red-600 text-amber-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
@@ -127,7 +127,6 @@ export default function Navbar() {
                 localStorage.removeItem("user");
                 setIsLoggedIn(false);
                 setMenuOpen(false);
-                // setCartItems([]);
                 navigate("/login");
               }}
               className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition w-full"
