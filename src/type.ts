@@ -1,7 +1,9 @@
-export interface Product {
-  id: number;
-  name: string;
-  price: string;
+export type Product = {
+  id: string | number;
+    title: string;
+  price:string | number;
+  toFixed?:  number| string;
   image: string;
-  quantity: number;
-}
+  description: string;
+  quantity?: number;
+};

@@ -1,20 +1,27 @@
-// components/Navbar.tsx
 import { useState, useEffect } from "react";
-import { FiMenu, FiX, FiShoppingCart } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import type { Dispatch, SetStateAction } from "react";
-import type { Product } from "../type";
+// import type { Product } from "../type";
+import { useCart } from "../useCart"; 
+import CartDrawer from "./CartDrawer";
 
-interface NavbarProps {
-  cartItemCount: number;
-  setCartItems: Dispatch<SetStateAction<Product[]>>;
-}
 
-export default function Navbar({ cartItemCount, setCartItems }: NavbarProps) {
+// type NavbarProps = {
+//   cartItemCount: number;
+//   setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+// };
+
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { cartItems } = useCart();
+
+  // نحسب إجمالي الكميات (القطع)
+  const totalQuantity = Array.isArray(cartItems)
+    ? cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
+    : 0;
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -34,11 +41,14 @@ export default function Navbar({ cartItemCount, setCartItems }: NavbarProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-transparent  text-white">
+    
+    <nav className="fixed top-8 left-0 w-full z-50 bg-transparent font-bold  text-amber-900">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3 text-white font-bold text-2xl">
+        <div className="flex items-center gap-3 font-bold  text-amber-900 text-2xl">
           <img src="/hoop.webp" alt="logo" className="w-10 h-10 rounded-full object-cover" />
-          <h1>Hoop</h1>
+          <Link to="/" className="font-bold text-2xl text-amber-900">
+            Hoop
+          </Link>
         </div>
 
         <ul className="hidden md:flex gap-6">
@@ -64,18 +74,19 @@ export default function Navbar({ cartItemCount, setCartItems }: NavbarProps) {
           </li>
         </ul>
 
-        <div className="hidden md:flex text-white items-center gap-4">
-          <Link to="/cart" className="relative   text-2xl hover:text-amber-400 transition">
-            <FiShoppingCart />
-            {cartItemCount > 0 && <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{cartItemCount}</span>}
+        <div className="hidden md:flex font-bold  text-amber-900 items-center gap-4">
+          <Link to="/cart" className="relative  flex gap-3  text-2xl hover:text-amber-400 transition">
+
+            {totalQuantity > 0 && <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{totalQuantity}</span>}
           </Link>
+          <CartDrawer />
 
           {isLoggedIn ? (
             <button
               onClick={() => {
                 localStorage.removeItem("user");
                 setIsLoggedIn(false);
-                setCartItems([]); // Clear cart on logout
+                // setCartItems([]); // Clear cart on logout
                 navigate("/login");
               }}
               className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition"
@@ -90,18 +101,20 @@ export default function Navbar({ cartItemCount, setCartItems }: NavbarProps) {
         </div>
 
         <div className="md:hidden flex items-center gap-4">
-          <Link to="/cart" className="relative text-white text-2xl hover:text-amber-400 transition">
-            <FiShoppingCart />
-            {cartItemCount > 0 && <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{cartItemCount}</span>}
+          <Link to="/cart" className="relative text-amber-900 text-2xl hover:text-amber-400 transition">
+          <CartDrawer />
+            {totalQuantity > 0 && 
+            <span className="absolute -top-2 -right-2 bg-red-600 text-amber-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+              {totalQuantity}</span>}
           </Link>
-          <button onClick={toggleMenu} className="text-white text-2xl">
+          <button onClick={toggleMenu} className="text-amber-900 cursor-pointer text-2xl">
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden mt-3 px-4 space-y-3 bg-transparent  text-white pb-6">
+        <div className="md:hidden mt-3  px-4 space-y-3 bg-transparent  text-amber-900 pb-6">
           <Link to="/" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
             Home
           </Link>
@@ -120,17 +133,17 @@ export default function Navbar({ cartItemCount, setCartItems }: NavbarProps) {
                 localStorage.removeItem("user");
                 setIsLoggedIn(false);
                 setMenuOpen(false);
-                setCartItems([]);
+                // setCartItems([]);
                 navigate("/login");
               }}
               className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition w-full"
             >
-              Log Out
+              Login
             </button>
           ) : (
             <Link to="/Login">
               <button onClick={() => setMenuOpen(false)} className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition w-full">
-                Login
+                Log Out
               </button>
             </Link>
           )}

@@ -3,50 +3,51 @@ import type { Settings } from "react-slick";
 import { useNavigate, Link } from "react-router-dom";
 
 import { FiShoppingCart } from "react-icons/fi";
-import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import type { Product } from "../type";
 import FeaturedCategories from "./FeaturedCategories";
+import { useCart } from "../components/CartContext";
 
-interface HomeProps {
-  addToCart: (product: Product) => void;
-}
 
-const newArrivals: Omit<Product, "quantity">[] = [
-  { id: 1, name: "Elegant Dress", price: "1000 EGP", image: "/img25.webp" },
-  { id: 2, name: "Classic Dress", price: "1000 EGP", image: "/img45.webp" },
-  { id: 3, name: "Modern Abaya", price: "1000 EGP", image: "/img8.webp" },
-  { id: 4, name: "Stylish Cardigan", price: "1000 EGP", image: "/img15.webp" },
+const newArrivals: Product[] = [
+  { id: "1", title: "Elegant Dress",price: "$900", image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
+  { id: "2", title: "Classic Dress", price:"$900" , image: "/img45.webp", description: "Classic Dress", quantity: 1 },
+  { id: "3", title: "Modern Abaya", price: "$900" , image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
+  { id: "4", title: "Stylish Cardigan", price: "$900", image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
 ];
 
 const testimonials = [
   {
-    id: 1,
-    quote: "Excellent quality and unique designs! Great shopping experience.",
+    id: "1",
     author: "فاطمة أحمد",
     image: "/img1.webp",
+    quote: "Excellent quality and unique designs! Great shopping experience.",
   },
   {
-    id: 2,
-    quote: "Fast delivery and excellent customer service. I loved the product very much.",
+    id: "2",
     author: "ليلى محمود",
     image: "/img8.webp",
+    quote: "Fast delivery and excellent customer service. I loved the product very much.",
   },
   {
-    id: 3,
-    quote: "Modern and modest fashion. I will definitely order again!",
+    id: "3",
     author: "مريم علي",
     image: "/img18.webp",
+    quote: "Modern and modest fashion. I will definitely order again!",
   },
 ];
 
-export default function Home({ addToCart }: HomeProps) {
+export default function Home() {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
-  const images: string[] = ["/img10.webp", "/img22.webp", "/img30.webp", "/img40.webp", "/img29.webp", "/img26.webp"];
+  const images: string[] = ["/img29.webp", "/img22.webp", "/img30.webp", "/img40.webp", "/img15.webp", "/img26.webp"];
 
   const settings: Settings = {
     infinite: true,
@@ -77,11 +78,10 @@ export default function Home({ addToCart }: HomeProps) {
       },
     ],
   };
-
   return (
     <main className=" min-h-screen pt-[60px]">
       {/* ===== Hero Slider ===== */}
-      <section className="relative bottom-15 h-[calc(100vh-60px)] overflow-visible">
+      <section className="relative bottom-15  h-[calc(100vh-60px)] ">
         <Slider {...settings} className="h-full w-full ">
           {images.map((img, index) => (
             <div key={index} className="h-screen w-full ">
@@ -90,7 +90,7 @@ export default function Home({ addToCart }: HomeProps) {
           ))}
         </Slider>
 
-        <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
+        <div className="absolute  inset-0 bg-black/5 flex items-center justify-center">
           <div className="text-center px-6 text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Elegance in Every Stitch</h1>
             <p className="text-lg md:text-xl mb-6">Explore our stylish and modest collection now.</p>
@@ -102,7 +102,7 @@ export default function Home({ addToCart }: HomeProps) {
       </section>
 
       {/* ===== Featured Categories Section ===== */}
-      <section className="py-19 px-4 md:px-8  lg:px-16">
+      <section className="py-20 px-4 md:px-8  lg:px-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">Our Featured Categories</h2>
         <FeaturedCategories />
       </section>
@@ -113,17 +113,35 @@ export default function Home({ addToCart }: HomeProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {newArrivals.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
-              <img src={product.image} alt={product.name} className="w-full h-64 object-cover" />
+              <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
+                <img src={product.image} alt={product.title} className="w-full h-64 object-cover" />
+              </div>
               <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h3>
                 <p className="text-gray-600 text-lg mb-4">{product.price}</p>
-                <button
-                  onClick={() => addToCart({ ...product, quantity: 1 })}
-                  className="bg-amber-900 hover:bg-amber-800 text-white px-5 py-2 rounded-lg text-sm transition flex items-center justify-center gap-2 mx-auto"
-                >
-                  <FiShoppingCart className="h-4 w-4" />
-                  Add to Cart
-                </button>
+
+                <div className="flex justify-center items-center gap-2 mb-4">
+    
+                    <div className="cart text-amber-900 text-center text-2xl">
+                      
+<button
+  onClick={() => {
+    addToCart(product);
+    toast.success(`${product.title} added to cart!`, {
+      autoClose: 2000,
+      hideProgressBar: false,
+      toastId: `cart-${product.id}`,
+    });
+  }}
+  className="cart text-amber-900 text-center text-2xl"
+>
+  <FiShoppingCart />
+
+</button>
+
+
+                    </div>
+                </div>
               </div>
             </div>
           ))}
@@ -203,13 +221,11 @@ export default function Home({ addToCart }: HomeProps) {
             <p className="text-gray-400 mb-4">Elegance in Every Stitch. Discover our stylish and modest collection.</p>
             {/* ✅ Corrected: Lines 252-256 - Social Icons */}
             <div className="flex space-x-4">
-              <Link to="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <Link to="https://www.facebook.com/habeba.shehab" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <FaFacebookF className="h-6 w-6 text-gray-400 hover:text-white transition" />
               </Link>
-              <Link to="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <FaTwitter className="h-6 w-6 text-gray-400 hover:text-white transition" />
-              </Link>
-              <Link to="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+
+              <Link to="https://www.instagram.com/hoop_hijab_fashion/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram className="h-6 w-6 text-gray-400 hover:text-white transition" />
               </Link>
               <Link to="https://whatsapp.com" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
@@ -253,10 +269,10 @@ export default function Home({ addToCart }: HomeProps) {
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-            <p className="text-gray-400 mb-2">123 Fashion St, Cairo, Egypt</p>
+            <p className="text-gray-400 mb-2"> Egypt</p>
             <p className="text-gray-400 mb-2">Email: info@hoop.com</p>
-            <p className="text-gray-400 mb-2">Phone: +20 123 456 7890</p>
-            <p className="text-gray-400">Working Hours: Mon-Fri, 9AM - 6PM</p>
+            <p className="text-gray-400 mb-2">Phone:..... </p>
+            <p className="text-gray-400">Working Hours: ......</p>
           </div>
 
           {/* Newsletter (Optional) */}
