@@ -5,12 +5,14 @@ import { useCart } from "../context/CartContext";
 import { FiShoppingCart } from "react-icons/fi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRatings } from "../useRatings";
 
 export default function ProductDetails() {
   const { addToCart } = useCart();
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
   const [current, setCurrent] = useState(0);
+const { rating, count, handleRate } = useRatings(product?.title ?? "");
 
   if (!product) {
     return <div className="text-center py-20 text-red-600 text-xl">Product not found</div>;
@@ -42,8 +44,30 @@ export default function ProductDetails() {
       <div className="flex-1 mt-10">
         <h2 className="text-3xl font-bold text-amber-900">{product.title}</h2>
         <p className="mt-4 text-gray-700">{product.description}</p>
+<div className="mt-35">
+  <div className="flex items-center gap-1">
+    {[1,2,3,4,5].map((star) => (
+      <span
+        key={star}
+        onClick={() => {
+          handleRate(star);
+          toast.success("Thank you for rating!");
+        }}
+        className={`cursor-pointer text-2xl ${
+          star <= Math.round(rating) ? "text-yellow-400" : "text-gray-300"
+        }`}
+      >
+        ★
+      </span>
+    ))}
 
-        <p className="mt-45 text-2xl text-amber-800 font-bold">${product.price}</p>
+    {/* display average + count */}
+    <span className="text-sm ml-2 text-gray-600">
+      {rating.toFixed(1)} ({count})
+    </span>
+  </div>
+</div>
+        <p className="mt- text-2xl text-amber-800 font-bold">${product.price}</p>
         <button
           onClick={() => {
             addToCart(product);

@@ -6,6 +6,7 @@ import { useCart } from "../context/CartContext";
 import CartDrawer from "../components/CartDrawer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRatings } from "../useRatings";   // ✅ important
 
 export default function Shop() {
   const { addToCart } = useCart();
@@ -17,7 +18,7 @@ export default function Shop() {
       ...prev,
       [p.id]: { showControls: true, quantity: 1 },
     }));
-    addToCart(p);
+    addToCart({ ...p, price: Number(p.price) });  // 🔧 convert price to number if needed
     toast.success("  Product added to cart!");
   };
 
@@ -29,6 +30,7 @@ export default function Shop() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {products.map((product: Product) => {
           const isShown = cartState[product.id]?.showControls || false;
+          const { rating, count } = useRatings(product.title); // rating hook
 
           return (
             <div key={product.id} className="bg-white rounded-xl shadow-md overflow-hidden">
@@ -36,13 +38,24 @@ export default function Shop() {
                 <img src={product.image} alt={product.title} className="w-full h-60 object-cover hover:scale-105 transition-transform duration-300" />
               </div>
 
-              <div className="p-4 text-center">
+              <div className="p-4 ">
                 <h2 className="text-lg font-semibold text-amber-900">{product.title}</h2>
                 <p className="text-sm text-gray-600 mt-1">{product.description}</p>
+
+                {/*  Rating read only */}
+                <div className="flex  items-center gap-1 mt-1" title={`Rating: ${rating.toFixed(1)} (${count})`}>
+                  {[1,2,3,4,5].map((i) => (
+                    <span key={i} className={`text-xl ${i <= Math.round(rating) ? "text-yellow-400" : "text-gray-300"}`}>
+                      ★
+                    </span>
+                  ))}
+                  <span className="text-sm  text-gray-500 ml-1">({count})</span>
+                </div>
+
                 <p className="text-amber-800 font-bold mt-2">${product.price}</p>
 
                 {!isShown ? (
-                  <button onClick={() => handleAddFirstTime(product)} className="mt-4 bg-amber-900 text-white px-4 py-2 rounded hover:bg-amber-800 mx-auto flex items-center gap-2">
+                  <button onClick={() => handleAddFirstTime(product)} className="mt-4 bg-amber-900 text-white px-4 py-2 rounded hover:bg-amber-800 flex items-center gap-2">
                     Add to Cart
                   </button>
                 ) : (
