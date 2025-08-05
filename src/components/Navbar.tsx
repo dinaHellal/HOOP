@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import type { Product } from "../type";
 import { useCart } from "../useCart"; 
 import CartDrawer from "./CartDrawer";
 
 
-// type NavbarProps = {
-//   cartItemCount: number;
-//   setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
-// };
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,7 +81,6 @@ export default function Navbar() {
               onClick={() => {
                 localStorage.removeItem("user");
                 setIsLoggedIn(false);
-                // setCartItems([]); // Clear cart on logout
                 navigate("/login");
               }}
               className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition"

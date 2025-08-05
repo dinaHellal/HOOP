@@ -1,5 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from "react";
-import type { ReactNode } from "react";
+import type {  ReactNode } from "react";
 
 import type { Product } from "../type";
 
@@ -7,7 +8,7 @@ type CartContextType = {
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
-  clearCart: () => void;                             // ✅ NEW
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -17,7 +18,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: Product) => {
     setCartItems((prev) => {
-      const existing = prev.find((p) => p.id === product.id);
+      const existing = prev.find((item) => item.id === product.id);
       if (existing) {
         return prev.map((item) =>
           item.id === product.id
@@ -34,7 +35,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const clearCart = () => {
-    setCartItems([]);                             // ✅ تفريغ السلة
+    setCartItems([]);
   };
 
   return (
@@ -51,3 +52,4 @@ export const useCart = () => {
   }
   return context;
 };
+console.log(useCart);

@@ -1,7 +1,6 @@
-// src/components/CartDrawer.tsx
 import { useState } from "react";
 import { FiShoppingCart, FiX, FiTrash2 } from "react-icons/fi";
-import { useCart } from "../components/CartContext";
+import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 export default function CartDrawer() {
@@ -41,9 +40,13 @@ export default function CartDrawer() {
                   <h4 className="font-medium">{item.title}</h4>
                   <p className="text-sm text-gray-600">${Number(item.price).toFixed(2)}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <button onClick={() => removeFromCart(String(item.id))} className="px-2 py-1 bg-gray-200">−</button>
+                    <button onClick={() => removeFromCart(String(item.id))} className="px-2 py-1 bg-gray-200">
+                      −
+                    </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => addToCart(item)} className="px-2 py-1 bg-gray-200">+</button>
+                    <button onClick={() => addToCart(item)} className="px-2 py-1 bg-gray-200">
+                      +
+                    </button>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-2">

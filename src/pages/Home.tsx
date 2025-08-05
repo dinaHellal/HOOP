@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { FiShoppingCart } from "react-icons/fi";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "slick-carousel/slick/slick.css";
@@ -12,13 +12,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 import type { Product } from "../type";
 import FeaturedCategories from "./FeaturedCategories";
-import { useCart } from "../components/CartContext";
-
+import { useCart } from "../context/CartContext";
 
 const newArrivals: Product[] = [
-  { id: "1", title: "Elegant Dress",price: "$900", image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
-  { id: "2", title: "Classic Dress", price:"$900" , image: "/img45.webp", description: "Classic Dress", quantity: 1 },
-  { id: "3", title: "Modern Abaya", price: "$900" , image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
+  { id: "1", title: "Elegant Dress", price: "$900", image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
+  { id: "2", title: "Classic Dress", price: "$900", image: "/img45.webp", description: "Classic Dress", quantity: 1 },
+  { id: "3", title: "Modern Abaya", price: "$900", image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
   { id: "4", title: "Stylish Cardigan", price: "$900", image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
 ];
 
@@ -121,26 +120,21 @@ export default function Home() {
                 <p className="text-gray-600 text-lg mb-4">{product.price}</p>
 
                 <div className="flex justify-center items-center gap-2 mb-4">
-    
-                    <div className="cart text-amber-900 text-center text-2xl">
-                      
-<button
-  onClick={() => {
-    addToCart(product);
-    toast.success(`${product.title} added to cart!`, {
-      autoClose: 2000,
-      hideProgressBar: false,
-      toastId: `cart-${product.id}`,
-    });
-  }}
-  className="cart text-amber-900 text-center text-2xl"
->
-  <FiShoppingCart />
-
-</button>
-
-
-                    </div>
+                  <div className="cart text-amber-900 text-center text-2xl">
+                    <button
+                      onClick={() => {
+                        addToCart(product);
+                        toast.success(`${product.title} added to cart!`, {
+                          autoClose: 2000,
+                          hideProgressBar: false,
+                          toastId: `cart-${product.id}`,
+                        });
+                      }}
+                      className="cart text-amber-900 text-center text-2xl"
+                    >
+                      <FiShoppingCart />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

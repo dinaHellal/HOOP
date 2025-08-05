@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../components/CartContext";
+import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
@@ -10,13 +10,10 @@ export default function Checkout() {
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + Number(item.price) * (item.quantity ?? 1),
-    0
-  );
+  const total = cartItems.reduce((acc, item) => acc + Number(item.price) * (item.quantity ?? 1), 0);
 
   const handleOrder = () => {
-    if(!name||!email||!phone||!address){
+    if (!name || !email || !phone || !address) {
       alert("Please fill in all customer details.");
       return;
     }
@@ -28,14 +25,7 @@ Phone: ${phone}
 Address: ${address}
 
 Items:
-${cartItems
-        .map(
-          (item) =>
-            `- ${item.title} (x${item.quantity}) = $${
-              Number(item.price) * (item.quantity ?? 1)
-            }`
-        )
-        .join("\n")}
+${cartItems.map((item) => `- ${item.title} (x${item.quantity}) = $${Number(item.price) * (item.quantity ?? 1)}`).join("\n")}
 
 Total: $${total}
     `;
@@ -45,8 +35,7 @@ Total: $${total}
 
     // تفريغ السلة بعد الإرسال
     clearCart();
-        navigate("/thank");
-
+    navigate("/thank");
   };
 
   return (

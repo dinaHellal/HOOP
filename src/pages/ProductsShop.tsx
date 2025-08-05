@@ -1,4 +1,3 @@
-// Array of sample products
 export const products = [
   {
     id: "1",
