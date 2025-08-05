@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const END_DATE = new Date("2025-08-09T02:20:00"); // 8/8/2025 11:59 PM
+const END_DATE = new Date("2025-08-07T02:20:00"); // 8/8/2025 11:59 PM
 
 export default function Banner() {
   const [timeLeft, setTimeLeft] = useState("");
@@ -14,13 +14,12 @@ export default function Banner() {
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 const NOTIFY_BEFORE_MINUTES = 1000;
 
-    setTimeLeft(`${days} : ${hours} : ${minutes} : ${seconds}`);
+    setTimeLeft(` ${hours} : ${minutes} : ${seconds}`);
 
 if (diff <= NOTIFY_BEFORE_MINUTES  * 60 * 1000) {
   notifyMe();
