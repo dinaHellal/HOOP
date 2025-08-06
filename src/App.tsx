@@ -37,7 +37,6 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-orders" element={<AdminOrders />} />
       </Routes>
-
       <ToastContainer />
     </CartProvider>
   );

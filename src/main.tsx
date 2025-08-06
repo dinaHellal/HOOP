@@ -5,15 +5,20 @@ import "./index.css";
 import App from "./App.tsx";
 import { CartProvider } from "./context/CartContext.tsx";
 
-
-
 createRoot(document.getElementById("root")!).render(
-      <StrictMode>
-      <BrowserRouter>
+  <StrictMode>
+    <BrowserRouter>
       <CartProvider>
-      <App />
+        <App />
       </CartProvider>
-      </BrowserRouter>
-      </StrictMode>
+    </BrowserRouter>
+  </StrictMode>
 );
-
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((reg) => console.log("Service Worker registered:", reg.scope))
+      .catch((err) => console.log("Service Worker registration failed:", err));
+  });
+}
