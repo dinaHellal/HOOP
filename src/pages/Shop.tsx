@@ -9,17 +9,10 @@ import { useRatings } from "../useRatings"; // ✅ important
 
 export default function Shop() {
   const { addToCart } = useCart();
-  const [cartState, setCartState] = useState<Record<string, { showControls: boolean; quantity: number }>>({});
+  const [cartState] = useState<Record<string, { showControls: boolean; quantity: number }>>({});
   const navigate = useNavigate();
 
-  const handleAddFirstTime = (p: Product) => {
-    setCartState((prev) => ({
-      ...prev,
-      [p.id]: { showControls: true, quantity: 1 },
-    }));
-    addToCart({ ...p, price: Number(p.price) }); // 🔧 convert price to number if needed
-    toast.success("  Product added to cart!");
-  };
+
 
   return (
     <div className="min-h-screen mt-15 px-4 py-12">
