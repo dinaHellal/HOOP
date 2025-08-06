@@ -1,11 +1,11 @@
 const CACHE_NAME = "hoop-cache-v1";
-
-// الملفات اللي فعلاً موجودة في مجلد public
 const urlsToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/icon512_rounded.png",
+  // ملفات CSS و JS المهمة
+
+  // تقدر تضيفي باقي المسارات زي الصور والصفحات هنا
 ];
 
 // install
@@ -13,8 +13,6 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(urlsToCache);
-    }).catch(err => {
-      console.error("Error caching during install:", err);
     })
   );
 });
@@ -34,27 +32,20 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// fetch
+// fetch => serve cache first then network fallback
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return fetch(event.request)
-        .then((response) => {
-          if (!response || !response.ok) return response;
-
+    caches.match(event.request).then((response) => {
+      return (
+        response ||
+        fetch(event.request).then((response) => {
+          // Save new files to cache
           return caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, response.clone());
             return response;
           });
         })
-        .catch((err) => {
-          console.error("Fetch failed:", err);
-          // ممكن ترجعي صفحة offline.html هنا لو حابة
-        });
+      );
     })
   );
 });
