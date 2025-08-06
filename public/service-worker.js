@@ -3,7 +3,8 @@ const urlsToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-
+  "/main.tsx",
+  "/App.tsx",
 ];
 
 // install
