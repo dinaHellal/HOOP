@@ -29,7 +29,7 @@ if (diff <= NOTIFY_BEFORE_MINUTES  * 60 * 1000) {
 
   const notifyMe = () => {
     if (Notification.permission === "granted") {
-      new Notification("Hurry! Offer ends in 30 minutes.");
+      new Notification("Hurry! Offer ends in 10 minutes.");
     }
   };
 

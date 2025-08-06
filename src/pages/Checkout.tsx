@@ -10,20 +10,37 @@ export default function Checkout() {
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1),
-    0
-  );
+  const total = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1), 0);
 
-  const handleOrder = () => {
-    if (!name || !email || !phone || !address) {
-      alert("Please fill in all customer details.");
-      return;
-    }
+const handleOrder = () => {
+  if (cartItems.length === 0 || total <= 0) {
+    alert("The cart is empty");
+    return;
+  }
+
+  if (!name || !email || !phone || !address) {
+    alert("Please fill in all customer details.");
+    return;
+  }
+
+  // التحقق من رقم الهاتف
+  const phoneRegex = /^01[0-9]{9}$/;
+  if (!phoneRegex.test(phone)) {
+    alert("the phone number must start with 01 and be 11 digits long.");
+    return;
+  }
+
+  // التحقق من الإيميل
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert("please enter a valid email address.");
+    return;
+  }
+
+  // باقي الكود هنا بدون تغيير...
 
     // generate order
-    const currentCounter =
-      Number(localStorage.getItem("orders_counter")) || 1;
+    const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
     const newId = `HOOP-${currentCounter}`;
 
     const newOrder = {
@@ -50,10 +67,7 @@ Address: ${address}
 Total: $${total.toFixed(2)}
     `;
     // open WhatsApp
-    window.open(
-      `https://wa.me/201004466279?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
 
     clearCart(); // ✅ يفضي السلة بمجرد الضغط
     navigate("/thank");
@@ -66,7 +80,7 @@ Total: $${total.toFixed(2)}
       <h2 className="text-xl mb-2 font-semibold">Your Order</h2>
       <ul className="border rounded p-4 space-y-2 mb-6">
         {cartItems.map((item) => (
-          <li key={item.id} className="flex justify-between md:flex-row flex-col">
+          <li key={item.id} className="flex justify-between md:flex-row flex-col ">
             <span>
               {item.title} x {item.quantity}
             </span>
@@ -83,7 +97,18 @@ Total: $${total.toFixed(2)}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="border p-3 rounded w-full" />
         <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="border p-3 rounded w-full" />
-        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="border p-3 rounded w-full" />
+        <input
+          value={phone}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+              setPhone(value);
+            }
+          }}
+          placeholder="Phone Number"
+          className="border p-3 rounded w-full"
+          maxLength={11}
+        />
         <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Full Address" className="border p-3 rounded w-full col-span-full" />
       </div>
 
