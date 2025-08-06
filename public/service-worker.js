@@ -1,12 +1,11 @@
 const CACHE_NAME = "hoop-cache-v1";
+
+// الملفات اللي فعلاً موجودة في مجلد public
 const urlsToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  // ملفات CSS و JS المهمة
-  "/src/main.tsx",
-  "/src/App.tsx",
-  // تقدر تضيفي باقي المسارات زي الصور والصفحات هنا
+  "/icon512_rounded.png",
 ];
 
 // install
@@ -14,6 +13,8 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(urlsToCache);
+    }).catch(err => {
+      console.error("Error caching during install:", err);
     })
   );
 });
@@ -33,20 +34,27 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// fetch => serve cache first then network fallback
+// fetch
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return (
-        response ||
-        fetch(event.request).then((response) => {
-          // Save new files to cache
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request)
+        .then((response) => {
+          if (!response || !response.ok) return response;
+
           return caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, response.clone());
             return response;
           });
         })
-      );
+        .catch((err) => {
+          console.error("Fetch failed:", err);
+          // ممكن ترجعي صفحة offline.html هنا لو حابة
+        });
     })
   );
 });
