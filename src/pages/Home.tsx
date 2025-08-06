@@ -2,7 +2,6 @@ import Slider from "react-slick";
 import type { Settings } from "react-slick";
 import { useNavigate, Link } from "react-router-dom";
 
-import { FiShoppingCart } from "react-icons/fi";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -109,37 +108,60 @@ export default function Home() {
       {/* ===== New Arrivals Section ===== */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">New Arrivals</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {newArrivals.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
-              <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
-                <img src={product.image} alt={product.title} className="w-full h-64 object-cover" />
-              </div>
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h3>
-                <p className="text-gray-600 text-lg mb-4">{product.price}</p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+  {newArrivals.map((product) => (
+    <div
+      key={product.id}
+      className="bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition duration-300"
+    >
+      <div
+        className="cursor-pointer"
+        onClick={() => navigate(`/product/${product.id}`)}
+      >
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-full h-64 object-cover"
+        />
+      </div>
+      <div className="p-4">
+        {/* العنوان */}
+        <h3 className="text-xl font-[cursive] text-amber-900 mb-1">
+          {product.title}
+        </h3>
 
-                <div className="flex justify-center items-center gap-2 mb-4">
-                  <div className="cart text-amber-900 text-center text-2xl">
-                    <button
-                      onClick={() => {
-                        addToCart({ ...product, price: Number(product.price) });
-                        toast.success(`${product.title} added to cart!`, {
-                          autoClose: 2000,
-                          hideProgressBar: false,
-                          toastId: `cart-${product.id}`,
-                        });
-                      }}
-                      className="cart text-amber-900 text-center text-2xl"
-                    >
-                      <FiShoppingCart />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* الوصف الصغير */}
+        <p className="text-gray-500 text-sm mb-2">{product.title}</p>
+
+        {/* نجوم التقييم */}
+        <div className="flex  gap-1 text-amber-400 mb-2">
+          {[...Array(5)].map((_, idx) => (
+            <span key={idx}>★</span>
           ))}
+          <span className="text-gray-500 ml-1 text-sm">(0)</span>
         </div>
+
+        {/* السعر */}
+        <p className="text-amber-900 text-xl font-bold mb-4">${product.price}</p>
+
+        {/* زر الإضافة إلى السلة */}
+        <button
+          onClick={() => {
+            addToCart({ ...product, price: Number(product.price) });
+            toast.success(`${product.title} added to cart!`, {
+              autoClose: 1500,
+              toastId: `cart-${product.id}`,
+            });
+          }}
+          className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
         <div className="text-center mt-12">
           <button onClick={() => navigate("/shop")} className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg transition">
             View All Products
