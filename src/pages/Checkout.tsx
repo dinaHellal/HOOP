@@ -10,7 +10,10 @@ export default function Checkout() {
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
-  const total = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1), 0);
+  const total = cartItems.reduce(
+    (acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1),
+    0
+  );
 
   const handleOrder = () => {
     if (!name || !email || !phone || !address) {
@@ -18,8 +21,9 @@ export default function Checkout() {
       return;
     }
 
-    // get admin counter from localStorage or start from 1
-    const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
+    // generate order
+    const currentCounter =
+      Number(localStorage.getItem("orders_counter")) || 1;
     const newId = `HOOP-${currentCounter}`;
 
     const newOrder = {
@@ -31,31 +35,27 @@ export default function Checkout() {
       status: "Processing" as const,
     };
 
-    // append to existing orders in localStorage
     const storedOrders = localStorage.getItem("orders");
     const ordersArray = storedOrders ? JSON.parse(storedOrders) : [];
     ordersArray.push(newOrder);
     localStorage.setItem("orders", JSON.stringify(ordersArray));
-
-    // update counter
     localStorage.setItem("orders_counter", (currentCounter + 1).toString());
-
-    // save last order id for thank page
     localStorage.setItem("lastOrderId", newOrder.id);
-localStorage.setItem("lastOrderId", newOrder.id);
 
     const message = `
 Order ID: ${newOrder.id}
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
-
 Total: $${total.toFixed(2)}
     `;
-//whatsapp link
-    window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
+    // open WhatsApp
+    window.open(
+      `https://wa.me/201004466279?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
 
-    clearCart();
+    clearCart(); // ✅ يفضي السلة بمجرد الضغط
     navigate("/thank");
   };
 

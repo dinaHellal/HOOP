@@ -78,6 +78,7 @@ export default function Home() {
   };
   return (
     <main className=" min-h-screen pt-[60px]">
+      
       {/* ===== Hero Slider ===== */}
       <section className="relative bottom-15  h-[calc(100vh-60px)] ">
         <Slider {...settings} className="h-full w-full ">
@@ -155,6 +156,7 @@ export default function Home() {
           }}
           className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
         >
+          
           Add to Cart
         </button>
       </div>

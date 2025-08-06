@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "../useCart"; 
+import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer";
-
-
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,72 +11,54 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { cartItems } = useCart();
 
-  // نحسب إجمالي الكميات (القطع)
+  // حساب الكمية
   const totalQuantity = Array.isArray(cartItems)
     ? cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
     : 0;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const userData = localStorage.getItem("user");
-      try {
-        const user = userData ? JSON.parse(userData) : null;
-        setIsLoggedIn(!!user);
-      } catch (error) {
-        console.error("Error parsing user data from localStorage:", error);
-        setIsLoggedIn(false);
-      }
-    }
-  }, [location]);
+useEffect(() => {
+  const userData = localStorage.getItem("user");
+  try {
+    const user = userData ? JSON.parse(userData) : null;
+    setIsLoggedIn(!!user);
+  } catch {
+    setIsLoggedIn(false);
+  }
+}, [location]);  // ← يعمل فقط عند أول تحميل للصفحة
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+console.log("cartItems", cartItems);
+console.log("totalQuantity", totalQuantity);
   return (
-    
-    <nav className="fixed top-8 left-0 w-full z-50 bg-transparent font-bold  text-amber-900">
+    <nav className="fixed top-8 left-0 w-full z-50 bg-transparent font-bold text-amber-900">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3 font-bold  text-amber-900 text-2xl">
+        
+        {/* Logo */}
+        <div className="flex items-center gap-3 text-2xl">
           <img src="/hoop.webp" alt="logo" className="w-10 h-10 rounded-full object-cover" />
-          <Link to="/" className="font-bold text-2xl text-amber-900">
-            Hoop
-          </Link>
+          <Link to="/">Hoop</Link>
         </div>
 
+        {/* Links */}
         <ul className="hidden md:flex gap-6">
-          <li>
-            <Link to="/" className=" hover:text-amber-400  transition">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/shop" className="hover:text-amber-400 transition">
-              Shop
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="hover:text-amber-400 transition">
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-amber-400 transition">
-              Contact
-            </Link>
-          </li>
-          <li>
-  <Link to="/tracking" className="hover:text-amber-400 transition">Track Order</Link>
-</li>
-
+          <li><Link to="/" className="hover:text-amber-400">Home</Link></li>
+          <li><Link to="/shop" className="hover:text-amber-400">Shop</Link></li>
+          <li><Link to="/about" className="hover:text-amber-400">About Us</Link></li>
+          <li><Link to="/contact" className="hover:text-amber-400">Contact</Link></li>
+          <li><Link to="/tracking" className="hover:text-amber-400">Track Order</Link></li>
         </ul>
 
-        <div className="hidden md:flex font-bold  text-amber-900 items-center gap-4">
-          <Link to="/checkout" className="relative  flex gap-3  text-2xl hover:text-amber-400 transition">
-
-            {totalQuantity > 0 && <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{totalQuantity}</span>}
-          </Link>
-          <CartDrawer />
+        {/* -------- Desktop -------- */}
+        <div className="hidden md:flex items-center gap-4">
+          <div className="relative text-2xl cursor-pointer">
+            <CartDrawer />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs h-5 w-5 rounded-full flex items-center justify-center">
+                {totalQuantity}
+              </span>
+            )}
+          </div>
 
           {isLoggedIn ? (
             <button
@@ -92,42 +72,38 @@ export default function Navbar() {
               Log Out
             </button>
           ) : (
-            <Link to="/Login">
-              <button className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition">Login</button>
+            <Link to="/login">
+              <button className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition">
+                Login
+              </button>
             </Link>
           )}
         </div>
 
+        {/* -------- Mobile -------- */}
         <div className="md:hidden flex items-center gap-4">
-          <Link to="/checkout" className="relative text-amber-900 text-2xl hover:text-amber-400 transition">
-          <CartDrawer />
-            {totalQuantity > 0 && 
-            <span className="absolute -top-2 -right-2 bg-red-600 text-amber-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-              {totalQuantity}</span>}
-          </Link>
-          <button onClick={toggleMenu} className="text-amber-900 cursor-pointer text-2xl">
+          <div className="relative text-2xl text-amber-900 cursor-pointer flex flex-col items-center">
+            <CartDrawer />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 right-0 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {totalQuantity}
+              </span>
+            )}
+          </div>
+
+          <button onClick={toggleMenu} className="text-amber-900 text-2xl">
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden   px-4 py-5 space-y-3 bg-white  text-amber-900 pb-6">
-          <Link to="/" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/shop" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
-            Shop
-          </Link>
-          <Link to="/about" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
-            About Us
-          </Link>
-          <Link to="/contact" className="block hover:text-amber-400" onClick={() => setMenuOpen(false)}>
-            Contact
-          </Link>
-            <Link to="/tracking" className="hover:text-amber-400 transition"  onClick={() => setMenuOpen(false)}>
-            Track Orde
-            r</Link>
+        <div className="md:hidden px-4 py-5 space-y-3 bg-white text-amber-900 pb-6">
+          <Link to="/" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Home</Link>
+          <Link to="/shop" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Shop</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">About Us</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Contact</Link>
+          <Link to="/tracking" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Track Order</Link>
 
           {isLoggedIn ? (
             <button
@@ -139,12 +115,12 @@ export default function Navbar() {
               }}
               className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition w-full"
             >
-              Login
+              Log Out
             </button>
           ) : (
-            <Link to="/Login">
+            <Link to="/login">
               <button onClick={() => setMenuOpen(false)} className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition w-full">
-                Log Out
+                Login
               </button>
             </Link>
           )}

@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { products } from "../Products";
 import type { Product } from "../type";
 import { useCart } from "../context/CartContext";
-import CartDrawer from "../components/CartDrawer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRatings } from "../useRatings";   // ✅ important
+import { useRatings } from "../useRatings"; // ✅ important
 
 export default function Shop() {
   const { addToCart } = useCart();
@@ -18,7 +17,7 @@ export default function Shop() {
       ...prev,
       [p.id]: { showControls: true, quantity: 1 },
     }));
-    addToCart({ ...p, price: Number(p.price) });  // 🔧 convert price to number if needed
+    addToCart({ ...p, price: Number(p.price) }); // 🔧 convert price to number if needed
     toast.success("  Product added to cart!");
   };
 
@@ -44,7 +43,7 @@ export default function Shop() {
 
                 {/*  Rating read only */}
                 <div className="flex  items-center gap-1 mt-1" title={`Rating: ${rating.toFixed(1)} (${count})`}>
-                  {[1,2,3,4,5].map((i) => (
+                  {[1, 2, 3, 4, 5].map((i) => (
                     <span key={i} className={`text-xl ${i <= Math.round(rating) ? "text-yellow-400" : "text-gray-300"}`}>
                       ★
                     </span>
@@ -55,13 +54,20 @@ export default function Shop() {
                 <p className="text-amber-800 font-bold mt-2">${product.price}</p>
 
                 {!isShown ? (
-                  <button onClick={() => handleAddFirstTime(product)} className="mt-4 bg-amber-900 text-white px-4 py-2 rounded hover:bg-amber-800 flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      addToCart({ ...product, price: Number(product.price) });
+                      toast.success(`${product.title} added to cart!`, {
+                        autoClose: 1500,
+                        toastId: `cart-${product.id}`,
+                      });
+                    }}
+                    className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+                  >
                     Add to Cart
                   </button>
                 ) : (
-                  <div className="mt-4 flex items-center justify-center gap-4">
-                    <CartDrawer />
-                  </div>
+                  <div className="mt-4 flex items-center justify-center gap-4"></div>
                 )}
               </div>
             </div>

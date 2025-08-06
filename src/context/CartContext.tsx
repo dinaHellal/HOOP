@@ -1,14 +1,19 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
-import type {  ReactNode } from "react";
-
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  type ReactNode,
+} from "react";
 import type { Product } from "../type";
 
 type CartContextType = {
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
-  clearCart: () => void;
+    clearCart: () => void;            // ✅ أضيفي هذا السطر
+
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -16,10 +21,27 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
+useEffect(() => {
+  const storedCart = localStorage.getItem("cart");
+  if (storedCart) {
+    const parsed = JSON.parse(storedCart);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      setCartItems(parsed);
+    }
+  }
+}, []);
+
+
+  useEffect(() => {
+
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const addToCart = (product: Product) => {
+    
     setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
+      const exists = prev.find((item) => item.id === product.id);
+      if (exists) {
         return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: (item.quantity || 1) + 1 }
@@ -34,12 +56,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart , clearCart: () => setCartItems([]) }}
+    >
       {children}
     </CartContext.Provider>
   );
@@ -52,4 +74,4 @@ export const useCart = () => {
   }
   return context;
 };
-console.log(useCart);
+export default CartContext;

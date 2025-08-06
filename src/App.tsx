@@ -19,12 +19,10 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminOrders from "./admin/AdminOrders";
 
 function App() {
-  
   return (
     <CartProvider>
       <Banner />
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -40,7 +38,7 @@ function App() {
         <Route path="/admin-orders" element={<AdminOrders />} />
       </Routes>
 
-      <ToastContainer position="top-left" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover={false} />
+      <ToastContainer />
     </CartProvider>
   );
 }
