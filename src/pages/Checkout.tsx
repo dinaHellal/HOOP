@@ -30,14 +30,8 @@ const handleOrder = () => {
     return;
   }
 
-  // التحقق من الإيميل
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert("please enter a valid email address.");
-    return;
-  }
 
-  // باقي الكود هنا بدون تغيير...
+
 
     // generate order
     const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
