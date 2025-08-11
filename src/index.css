@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
 body {
-  font-family: "Playwrite HU", cursive;
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 400;
+  font-style: nor;
+  letter-spacing: 3px;
 }

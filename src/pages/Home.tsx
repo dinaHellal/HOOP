@@ -20,26 +20,7 @@ const newArrivals: Product[] = [
   { id: "4", title: "Stylish Cardigan", price: 900, image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
 ];
 
-const testimonials = [
-  {
-    id: "1",
-    author: "فاطمة أحمد",
-    image: "/img1.webp",
-    quote: "Excellent quality and unique designs! Great shopping experience.",
-  },
-  {
-    id: "2",
-    author: "ليلى محمود",
-    image: "/img8.webp",
-    quote: "Fast delivery and excellent customer service. I loved the product very much.",
-  },
-  {
-    id: "3",
-    author: "مريم علي",
-    image: "/img18.webp",
-    quote: "Modern and modest fashion. I will definitely order again!",
-  },
-];
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -58,24 +39,7 @@ export default function Home() {
     fade: true,
   };
 
-  const testimonialSettings: Settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-        },
-      },
-    ],
-  };
+
   return (
     <main className=" min-h-screen pt-[60px]">
       
@@ -203,23 +167,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Testimonials Section ===== */}
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">What Our Customers Say</h2>
-        <Slider {...testimonialSettings} className="max-w-3xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="text-center px-4">
-              <div className="bg-[#f9f4f0] p-8 rounded-lg shadow-md">
-                <p className="text-gray-700 text-lg italic mb-6">"{testimonial.quote}"</p>
-                <div className="flex items-center justify-center mb-4">
-                  <img src={testimonial.image} alt={testimonial.author} className="w-16 h-16 rounded-full object-cover mr-4" />
-                  <p className="font-semibold text-gray-800 text-xl">{testimonial.author}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </section>
+  
 
       {/* ===== Call to Action Section ===== */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-amber-900 text-white text-center">
@@ -231,23 +179,23 @@ export default function Home() {
       </section>
 
       {/* ===== Footer Section ===== */}
-      <footer className="bg-gray-800 text-white py-12 px-4 md:px-8 lg:px-16">
+      <footer className="bg-white text-gray-800 py-12 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1">
             <h3 className="text-2xl font-bold mb-4 text-amber-400">Hoop</h3>
-            <p className="text-gray-400 mb-4">Elegance in Every Stitch. Discover our stylish and modest collection.</p>
+            <p className="text-gray-800 mb-4">Elegance in Every Stitch. Discover our stylish and modest collection.</p>
             {/* ✅ Corrected: Lines 252-256 - Social Icons */}
             <div className="flex space-x-4">
               <Link to="https://www.facebook.com/habeba.shehab" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <FaFacebookF className="h-6 w-6 text-gray-400 hover:text-white transition" />
+                <FaFacebookF className="h-6 w-6 text-gray-800 hover:text-white transition" />
               </Link>
 
               <Link to="https://www.instagram.com/hoop_hijab_fashion/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <FaInstagram className="h-6 w-6 text-gray-400 hover:text-white transition" />
+                <FaInstagram className="h-6 w-6 text-gray-800 hover:text-white transition" />
               </Link>
               <Link to="https://whatsapp.com" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <FaWhatsapp className="h-6 w-6 text-gray-400 hover:text-white transition" />
+                <FaWhatsapp className="h-6 w-6 text-gray-800 hover:text-white transition" />
               </Link>
             </div>
           </div>
@@ -257,27 +205,27 @@ export default function Home() {
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul>
               <li className="mb-2">
-                <Link to="/" className="text-gray-400 hover:text-white transition">
+                <Link to="/" className="text-gray-800 hover:text-white transition">
                   Home
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/shop" className="text-gray-400 hover:text-white transition">
+                <Link to="/shop" className="text-gray-800 hover:text-white transition">
                   Shop
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/about" className="text-gray-400 hover:text-white transition">
+                <Link to="/about" className="text-gray-800 hover:text-white transition">
                   About Us
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/contact" className="text-gray-400 hover:text-white transition">
+                <Link to="/contact" className="text-gray-800 hover:text-white transition">
                   Contact
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition">
+                <Link to="/privacy-policy" className="text-gray-800 hover:text-white transition">
                   Privacy Policy
                 </Link>
               </li>
@@ -287,18 +235,18 @@ export default function Home() {
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-            <p className="text-gray-400 mb-2"> Egypt</p>
-            <p className="text-gray-400 mb-2">Email: info@hoop.com</p>
-            <p className="text-gray-400 mb-2">Phone:..... </p>
-            <p className="text-gray-400">Working Hours: ......</p>
+            <p className="text-gray-800 mb-2"> Egypt</p>
+            <p className="text-gray-800 mb-2">Email: info@hoop.com</p>
+            <p className="text-gray-800 mb-2">Phone:..... </p>
+            <p className="text-gray-800">Working Hours: ......</p>
           </div>
 
           {/* Newsletter (Optional) */}
           <div className="col-span-1">
             <h3 className="text-xl font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">Stay updated with our latest collections and offers.</p>
+            <p className="text-gray-800 mb-4">Stay updated with our latest collections and offers.</p>
             <form>
-              <input type="email" placeholder="Your email address" className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-amber-400 mb-3" />
+              <input type="email" placeholder="Your email address" className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-amber-400 mb-3" />
               <button type="submit" className="bg-amber-900 hover:bg-amber-800 text-white px-6 py-3 rounded-md w-full transition">
                 Subscribe
               </button>
@@ -307,7 +255,7 @@ export default function Home() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-10 pt-8 text-center text-gray-400 text-sm">&copy; {new Date().getFullYear()} Hoop. All rights reserved.</div>
+        <div className="border-t border-gray-700 mt-10 pt-8 text-center text-gray-800 text-sm">&copy; {new Date().getFullYear()} Hoop. All rights reserved.</div>
       </footer>
     </main>
   );

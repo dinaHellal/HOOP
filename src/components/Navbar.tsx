@@ -31,13 +31,13 @@ useEffect(() => {
 console.log("cartItems", cartItems);
 console.log("totalQuantity", totalQuantity);
   return (
-    <nav className="fixed top-8 left-0 w-full z-50 bg-transparent font-bold text-amber-900">
+    <nav className="fixed top-8 left-0 w-full z-50 bg-white text-amber-900">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         
         {/* Logo */}
         <div className="flex items-center gap-3 text-2xl">
           <img src="/hoop.webp" alt="logo" className="w-10 h-10 rounded-full object-cover" />
-          <Link to="/">Hoop</Link>
+          <Link to="/">HOOP</Link>
         </div>
 
         {/* Links */}

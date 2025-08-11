@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const END_DATE = new Date("2025-08-07T02:20:00"); // 8/8/2025 11:59 PM
+const END_DATE = new Date("2025-08-07T02:20:00");
 
 export default function Banner() {
   const [timeLeft, setTimeLeft] = useState("");
@@ -48,7 +48,7 @@ if (diff <= NOTIFY_BEFORE_MINUTES  * 60 * 1000) {
 
   return (
     <div className="flex justify-center">
-      <p className="bg-white/35 text-amber-900 font-bold z-1000 p-1 text-center rounded-md w-full">
+      <p className="bg-amber-900 text-white font-bold z-1000 p-1 text-center rounded-md w-full">
         Offer ends in: {timeLeft}
       </p>
     </div>
