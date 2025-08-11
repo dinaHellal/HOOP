@@ -1,15 +1,9 @@
-// src/pages/AddProduct.tsx
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AddProduct() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-
-  if (user.role !== "admin") {
-    return <p className="text-center text-red-600 mt-10">Access Denied</p>;
-  }
-
   const [product, setProduct] = useState({
     id: Date.now().toString(),
     title: "",
@@ -18,6 +12,11 @@ export default function AddProduct() {
     category: "",
     description: "",
   });
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  if (user.role !== "admin") {
+    return <p className="text-center text-red-600 mt-10">Access Denied</p>;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
