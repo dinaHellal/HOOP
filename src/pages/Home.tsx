@@ -18,12 +18,14 @@ const newArrivals: Product[] = [
   { id: "2", title: "Princess", price: "1,750", image: "/dress5.webp", description: " Dress", quantity: 2 },
   { id: "3", title: "Bisan", price: "1,100", image: "/dress11.webp", description: "Dress", quantity: 1 },
   { id: "4", title: "Butterfly Set", price: "1,200", image: "/set5.webp", description: " Set", quantity: 1 },
+    { id: "12", title: "Layla", price: "600", image: "/basic1.webp", description: "Basicc", quantity: 1 },
     { id: "5", title: "Bascota", price: "1,100", image: "/dress22.webp", description: "Dress", quantity: 1 },
   { id: "6", title: "Twilight", price: 750, image: "/jeb2.webp", description: "Skirt", quantity: 1 },
   { id: "7", title: "Flory", price: "1,200", image: "/dress25.webp", description: "Dress", quantity: 1 },
   { id: "8", title: "Warda", price: 1000, image: "/dress29.webp", description: "Dress", quantity: 1 },
   { id: "9", title: "Niqap Hoop", price: 450, image: "/img33.webp", description: "Niqap", quantity: 1 },
   { id: "10", title: "Flora", price: "1,200", image: "/dress13.webp", description: "Dress", quantity: 1 },
+  { id: "11", title: "Lilian", price: "900", image: "/kardy1.webp", description: "Cardi", quantity: 1 },
 
 ];
 

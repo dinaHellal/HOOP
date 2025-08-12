@@ -79,4 +79,20 @@ export const products = [
     image: "/dress13.webp",
     images: ["/dress13.webp", "/dress14.webp", "/dress15.webp", "/dress16.webp", "/dress17.webp", "/dress18.webp"],
   },
+    {
+    id: "11",
+    title: "Lilian",
+    price: "900",
+    description: "Cardi",
+    image: "/kardy1.webp",
+    images: ["/kardy1.webp", "/kardy2.webp", "/kardy3.webp", "/kardy4.webp", "/kardy5.webp", "/kardy6.webp"],
+  },
+    {
+    id: "12",
+    title: "Layla",
+    price: "600",
+    description: "Basic",
+    image: "/basic1.webp",
+    images: ["/basic1.webp", "/basic2.webp"],
+  },
 ];
