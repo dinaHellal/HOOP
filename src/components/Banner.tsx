@@ -1,56 +1,8 @@
-import { useEffect, useState } from "react";
 
-const END_DATE = new Date("2025-08-07T02:20:00");
 
 export default function Banner() {
-  const [timeLeft, setTimeLeft] = useState("");
 
-  const updateCountdown = () => {
-    const now = new Date().getTime();
-    const diff = END_DATE.getTime() - now;
-
-    if (diff <= 0) {
-      setTimeLeft("Offer ended");
-      return;
-    }
-
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-const NOTIFY_BEFORE_MINUTES = 1000;
-
-    setTimeLeft(` ${hours} : ${minutes} : ${seconds}`);
-
-if (diff <= NOTIFY_BEFORE_MINUTES  * 60 * 1000) {
-  notifyMe();
-}
-
-  };
-
-  const notifyMe = () => {
-    if (Notification.permission === "granted") {
-      new Notification("Hurry! Offer ends in 10 minutes.");
-    }
-  };
-
-  useEffect(() => {
-    // نطلب صلاحية الإشعار
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission();
-    }
-
-    updateCountdown();
-    // تحديث كل ثانية بدل كل دقيقة ✨
-    const timer = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(timer);
-  }, );
-
-  return (
-    <div className="flex justify-center">
-      <p className="bg-amber-900 text-white font-bold z-1000 p-1 text-center rounded-md w-full">
-        Offer ends in: {timeLeft}
-      </p>
-    </div>
-  );
+  return <div className="bg-amber-900 text-white font-bold text-center py-2">
+Shipping to all parts of the world
+    </div>;
 }

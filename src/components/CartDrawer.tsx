@@ -22,7 +22,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div className={`fixed top-0 right-0 h-full w-[600px] max-w-full bg-white shadow-xl z-[99] transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <div className="p-4 flex justify-between items-center">
+        <div className="p-4 flex justify-between relative top-10 items-center">
           <h2 className="text-xl">Cart</h2>
           <button onClick={() => setIsOpen(false)} className="text-2xl cursor-pointer font-bold">
             <FiX />{" "}

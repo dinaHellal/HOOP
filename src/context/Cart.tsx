@@ -9,7 +9,7 @@ export default function Cart() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="container mx-auto py-20 text-center">
+      <div className="container  mx-auto py-20 text-center">
         <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" className="w-40 mx-auto mb-6 opacity-60" alt="empty" />
         <p className="text-gray-500 text-xl mb-4">Your cart is empty</p>
         <Link to="/" className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 duration-200">
@@ -20,7 +20,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container  mx-auto py-10">
       <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
 
       <div className="space-y-6">

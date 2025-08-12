@@ -6,6 +6,7 @@ import { useCart } from "../context/CartContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRatings } from "../useRatings"; // ✅ important
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Shop() {
   const { addToCart } = useCart();
@@ -18,7 +19,14 @@ export default function Shop() {
     <div className="min-h-screen mt-15 px-4 py-12">
       <h1 className="text-4xl font-bold text-center text-amber-900 mb-6">Shop All Products</h1>
       <p className="text-center text-gray-600 mb-10">Browse through our elegant and modest collection of clothing.</p>
-
+  <a
+          href="https://wa.me/201004466279"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50"
+        >
+          <FaWhatsapp size={23} />
+        </a>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {products.map((product: Product) => {
           const isShown = cartState[product.id]?.showControls || false;

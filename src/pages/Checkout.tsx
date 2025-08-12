@@ -63,7 +63,7 @@ Total: $${total.toFixed(2)}
     // open WhatsApp
     window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
 
-    clearCart(); // ✅ يفضي السلة بمجرد الضغط
+    clearCart(); 
     navigate("/thank");
   };
 

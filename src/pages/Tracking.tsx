@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {  FaWhatsapp } from "react-icons/fa";
 
 interface Order {
   id: string;
@@ -60,7 +61,14 @@ export default function Tracking() {
       >
         Track Order
       </button>
-
+  <a
+          href="https://wa.me/201004466279"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50"
+        >
+          <FaWhatsapp size={23} />
+        </a>
       {error && <p className="text-red-600 mt-4">{error}</p>}
 
       {order && (

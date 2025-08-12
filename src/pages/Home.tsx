@@ -20,8 +20,6 @@ const newArrivals: Product[] = [
   { id: "4", title: "Stylish Cardigan", price: 900, image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
 ];
 
-
-
 export default function Home() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -39,10 +37,8 @@ export default function Home() {
     fade: true,
   };
 
-
   return (
     <main className=" min-h-screen scroll-smooth pt-[60px]">
-      
       {/* ===== Hero Slider ===== */}
       <section className="relative bottom-15  h-[calc(100vh-60px)] ">
         <Slider {...settings} className="h-full w-full ">
@@ -52,6 +48,14 @@ export default function Home() {
             </div>
           ))}
         </Slider>
+        <a
+          href="https://wa.me/201004466279"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50"
+        >
+          <FaWhatsapp size={23} />
+        </a>
 
         <div className="absolute  inset-0 bg-black/5 flex items-center justify-center">
           <div className="text-center px-6 text-white">
@@ -73,54 +77,39 @@ export default function Home() {
       {/* ===== New Arrivals Section ===== */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">New Arrivals</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-  {newArrivals.map((product) => (
-    <div
-      key={product.id}
-      className=" rounded-xl overflow-hidden  hover:shadow-lg transition duration-300"
-    >
-      <div
-        className="cursor-pointer"
-        onClick={() => navigate(`/product/${product.id}`)}
-      >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-100 object-cover"
-        />
-      </div>
-      <div className="p-4">
-        {/* العنوان */}
-        <h3 className="text-xl font-[cursive] text-amber-900 mb-1">
-          {product.title}
-        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {newArrivals.map((product) => (
+            <div key={product.id} className=" rounded-xl overflow-hidden  hover:shadow-lg transition duration-300">
+              <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
+                <img src={product.image} alt={product.title} className="w-full h-100 object-cover" />
+              </div>
+              <div className="p-4">
+                {/* العنوان */}
+                <h3 className="text-xl font-[cursive] text-amber-900 mb-1">{product.title}</h3>
 
-        {/* الوصف الصغير */}
-        <p className="text-gray-500 text-sm mb-2">{product.title}</p>
+                {/* الوصف الصغير */}
+                <p className="text-gray-500 text-sm mb-2">{product.title}</p>
 
-       
+                {/* السعر */}
+                <p className="text-amber-900 text-xl font-bold mb-4">{product.price}eg</p>
 
-        {/* السعر */}
-        <p className="text-amber-900 text-xl font-bold mb-4">{product.price}eg</p>
-
-        {/* زر الإضافة إلى السلة */}
-        <button
-          onClick={() => {
-            addToCart({ ...product, price: Number(product.price) });
-            toast.success(`${product.title} added to cart!`, {
-              autoClose: 1500,
-              toastId: `cart-${product.id}`,
-            });
-          }}
-          className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
-        >
-          
-          Add to Cart
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
+                {/* زر الإضافة إلى السلة */}
+                <button
+                  onClick={() => {
+                    addToCart({ ...product, price: Number(product.price) });
+                    toast.success(`${product.title} added to cart!`, {
+                      autoClose: 1500,
+                      toastId: `cart-${product.id}`,
+                    });
+                  }}
+                  className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <div className="text-center mt-12">
           <button onClick={() => navigate("/shop")} className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg transition">
@@ -160,8 +149,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-  
 
       {/* ===== Call to Action Section ===== */}
       <section className="py-16 px-4 md:px-8 lg:px-16 bg-amber-900 text-white text-center">
