@@ -14,9 +14,9 @@ import Banner from "./components/Banner";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import Thank from "./components/Thank";
-import Tracking from "./pages/Tracking";
 import AdminLogin from "./admin/AdminLogin";
 import AdminOrders from "./admin/AdminOrders";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   return (
@@ -30,10 +30,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
+              <Route path="/category/:id" element={<CategoryPage />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/thank" element={<Thank />} />
-        <Route path="/tracking" element={<Tracking />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-orders" element={<AdminOrders />} />
       </Routes>

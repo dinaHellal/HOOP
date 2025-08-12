@@ -46,7 +46,6 @@ console.log("totalQuantity", totalQuantity);
           <li><Link to="/shop" className="hover:text-amber-400">Shop</Link></li>
           <li><Link to="/about" className="hover:text-amber-400">About Us</Link></li>
           <li><Link to="/contact" className="hover:text-amber-400">Contact</Link></li>
-          <li><Link to="/tracking" className="hover:text-amber-400">Track Order</Link></li>
         </ul>
 
         {/* -------- Desktop -------- */}

@@ -1,5 +1,5 @@
-import { useContext } from "react"; // مهم جداً: استيراد useContext
-import CartContext from "./CartContext"; // استيراد CartContext
+import { useContext } from "react"; 
+import CartContext from "./CartContext"; 
 
 export const useCart = () => {
   const context = useContext(CartContext);

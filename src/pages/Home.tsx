@@ -14,10 +14,17 @@ import FeaturedCategories from "./FeaturedCategories";
 import { useCart } from "../context/CartContext";
 
 const newArrivals: Product[] = [
-  { id: "1", title: "Elegant Dress", price: 900, image: "/img25.webp", description: "Elegant Dress", quantity: 1 },
-  { id: "2", title: "Classic Dress", price: 900, image: "/img45.webp", description: "Classic Dress", quantity: 1 },
-  { id: "3", title: "Modern Abaya", price: 900, image: "/img8.webp", description: "Modern Abaya", quantity: 1 },
-  { id: "4", title: "Stylish Cardigan", price: 900, image: "/img15.webp", description: "Stylish Cardigan", quantity: 1 },
+  { id: "1", title: "Nesma", price: 550, image: "/blause1.webp", description: "Blouse", quantity: 1 },
+  { id: "2", title: "Princess", price: "1,750", image: "/dress5.webp", description: " Dress", quantity: 1 },
+  { id: "3", title: "Bisan", price: "1,100", image: "/dress11.webp", description: "Dress", quantity: 1 },
+  { id: "4", title: "Butterfly Set", price: "1,200", image: "/set5.webp", description: " Set", quantity: 1 },
+    { id: "5", title: "Bascota", price: "1,100", image: "/dress22.webp", description: "Dress", quantity: 1 },
+  { id: "6", title: "Twilight", price: 750, image: "/jeb2.webp", description: "Skirt", quantity: 1 },
+  { id: "7", title: "Flory", price: "1,200", image: "/dress25.webp", description: "Stylish Set", quantity: 1 },
+  { id: "8", title: "Warda", price: 1000, image: "/dress29.webp", description: "Stylish Set", quantity: 1 },
+  { id: "9", title: "Niqap Hoop", price: 450, image: "/img33.webp", description: "Stylish Set", quantity: 1 },
+  { id: "10", title: "Flora", price: "1,200", image: "/dress13.webp", description: "Stylish Set", quantity: 1 },
+
 ];
 
 export default function Home() {
@@ -38,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <main className=" min-h-screen scroll-smooth pt-[60px]">
+    <main className=" min-h-screen scroll-smooth bg-white pt-[60px]">
       {/* ===== Hero Slider ===== */}
       <section className="relative bottom-15  h-[calc(100vh-60px)] ">
         <Slider {...settings} className="h-full w-full ">
@@ -52,7 +59,7 @@ export default function Home() {
           href="https://wa.me/201004466279"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50"
+          className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg  transition-all z-50"
         >
           <FaWhatsapp size={23} />
         </a>
@@ -166,17 +173,17 @@ export default function Home() {
           <div className="col-span-1">
             <h3 className="text-2xl font-bold mb-4 text-amber-400">Hoop</h3>
             <p className="text-gray-800 mb-4">Elegance in Every Stitch. Discover our stylish and modest collection.</p>
-            {/* ✅ Corrected: Lines 252-256 - Social Icons */}
+            {/* Social Icons */}
             <div className="flex space-x-4">
               <Link to="https://www.facebook.com/habeba.shehab" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <FaFacebookF className="h-6 w-6 text-gray-800 hover:text-white transition" />
+                <FaFacebookF className="h-6 w-6 text-gray-800  transition" />
               </Link>
 
               <Link to="https://www.instagram.com/hoop_hijab_fashion/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <FaInstagram className="h-6 w-6 text-gray-800 hover:text-white transition" />
+                <FaInstagram className="h-6 w-6 text-gray-800 transition" />
               </Link>
               <Link to="https://whatsapp.com" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <FaWhatsapp className="h-6 w-6 text-gray-800 hover:text-white transition" />
+                <FaWhatsapp className="h-6 w-6 text-gray-800  transition" />
               </Link>
             </div>
           </div>
