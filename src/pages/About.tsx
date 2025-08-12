@@ -3,7 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 export default function About() {
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mt-15 mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6 text-center">About Us</h1>
       <a
         href="https://wa.me/201004466279"
