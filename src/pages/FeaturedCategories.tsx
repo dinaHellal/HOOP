@@ -36,12 +36,12 @@ const categories: Category[] = [
             <a
               href={cat.link}
               key={index}
-              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+              className="group bg-white rounded-xl  overflow-hidden hover:shadow-lg transition"
             >
               <img
                 src={cat.image}
                 alt={cat.name}
-                className="w-full h-60 object-cover transition-transform group-hover:scale-105"
+                className="w-full h-100 object-cover transition-transform group-hover:scale-105"
               />
               <div className="p-4 text-center">
                 <h3 className="text-lg font-semibold text-amber-900">

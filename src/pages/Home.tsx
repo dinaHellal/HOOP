@@ -41,7 +41,7 @@ export default function Home() {
 
 
   return (
-    <main className=" min-h-screen pt-[60px]">
+    <main className=" min-h-screen scroll-smooth pt-[60px]">
       
       {/* ===== Hero Slider ===== */}
       <section className="relative bottom-15  h-[calc(100vh-60px)] ">
@@ -57,7 +57,7 @@ export default function Home() {
           <div className="text-center px-6 text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">Elegance in Every Stitch</h1>
             <p className="text-lg md:text-xl mb-6">Explore our stylish and modest collection now.</p>
-            <button onClick={() => navigate("/shop")} className="bg-amber-900 hover:bg-amber-800  transition px-6 py-2 text-white cursor-pointer rounded-xl text-sm">
+            <button onClick={() => navigate("/shop")} className="bg-amber-900 hover:bg-amber-800   transition px-6 py-2 text-white cursor-pointer rounded-xl text-sm">
               Shop Now
             </button>
           </div>
@@ -77,7 +77,7 @@ export default function Home() {
   {newArrivals.map((product) => (
     <div
       key={product.id}
-      className="bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition duration-300"
+      className=" rounded-xl overflow-hidden  hover:shadow-lg transition duration-300"
     >
       <div
         className="cursor-pointer"
@@ -86,7 +86,7 @@ export default function Home() {
         <img
           src={product.image}
           alt={product.title}
-          className="w-full h-64 object-cover"
+          className="w-full h-100 object-cover"
         />
       </div>
       <div className="p-4">
@@ -98,16 +98,10 @@ export default function Home() {
         {/* الوصف الصغير */}
         <p className="text-gray-500 text-sm mb-2">{product.title}</p>
 
-        {/* نجوم التقييم */}
-        <div className="flex  gap-1 text-amber-400 mb-2">
-          {[...Array(5)].map((_, idx) => (
-            <span key={idx}>★</span>
-          ))}
-          <span className="text-gray-500 ml-1 text-sm">(0)</span>
-        </div>
+       
 
         {/* السعر */}
-        <p className="text-amber-900 text-xl font-bold mb-4">${product.price}</p>
+        <p className="text-amber-900 text-xl font-bold mb-4">{product.price}eg</p>
 
         {/* زر الإضافة إلى السلة */}
         <button
