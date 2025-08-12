@@ -16,7 +16,7 @@ export default function Shop() {
 
 
   return (
-    <div className="min-h-screen mt-15 px-4 py-12">
+    <div data-aos="fade-up" className="min-h-screen mt-15 px-4 py-12">
       <h1 className="text-4xl font-bold text-center text-amber-900 mb-6">Shop All Products</h1>
       <p className="text-center text-gray-600 mb-10">Browse through our elegant and modest collection of clothing.</p>
   <a

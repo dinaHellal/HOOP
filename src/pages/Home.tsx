@@ -15,7 +15,7 @@ import { useCart } from "../context/CartContext";
 
 const newArrivals: Product[] = [
   { id: "1", title: "Nesma", price: 550, image: "/blause1.webp", description: "Blouse", quantity: 1 },
-  { id: "2", title: "Princess", price: "1,750", image: "/dress5.webp", description: " Dress", quantity: 1 },
+  { id: "2", title: "Princess", price: "1,750", image: "/dress5.webp", description: " Dress", quantity: 2 },
   { id: "3", title: "Bisan", price: "1,100", image: "/dress11.webp", description: "Dress", quantity: 1 },
   { id: "4", title: "Butterfly Set", price: "1,200", image: "/set5.webp", description: " Set", quantity: 1 },
     { id: "5", title: "Bascota", price: "1,100", image: "/dress22.webp", description: "Dress", quantity: 1 },
@@ -45,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <main className=" min-h-screen scroll-smooth bg-white pt-[60px]">
+    <main className=" min-h-screen  bg-white pt-[60px]">
       {/* ===== Hero Slider ===== */}
       <section className="relative bottom-15  h-[calc(100vh-60px)] ">
         <Slider {...settings} className="h-full w-full ">
@@ -76,13 +76,14 @@ export default function Home() {
       </section>
 
       {/* ===== Featured Categories Section ===== */}
-      <section className="py-20 px-4 md:px-8  lg:px-16">
+      <section data-aos="fade-up" className="py-20 px-4 md:px-8  lg:px-16">
+        
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">Our Featured Categories</h2>
         <FeaturedCategories />
       </section>
 
       {/* ===== New Arrivals Section ===== */}
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-white">
+      <section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">New Arrivals</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {newArrivals.map((product) => (
@@ -126,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* ===== Why Choose Us Section ===== */}
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-[#f9f4f0]">
+      <section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-[#f9f4f0]">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">Why Choose Us?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="bg-white p-8 rounded-lg shadow-md">
@@ -158,7 +159,7 @@ export default function Home() {
       </section>
 
       {/* ===== Call to Action Section ===== */}
-      <section className="py-16 px-4 md:px-8 lg:px-16 bg-amber-900 text-white text-center">
+      <section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-amber-900 text-white text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Elevate Your Style?</h2>
         <p className="text-lg md:text-xl mb-8">Discover your perfect look with our diverse collection.</p>
         <button onClick={() => navigate("/shop")} className="bg-white text-amber-900 hover:bg-gray-100 transition px-8 py-3 rounded-lg text-lg font-semibold">
@@ -167,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* ===== Footer Section ===== */}
-      <footer className="bg-white text-gray-800 py-12 px-4 md:px-8 lg:px-16">
+      <footer data-aos="fade-up" className="bg-white text-gray-800 py-12 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1">

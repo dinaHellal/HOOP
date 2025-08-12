@@ -1,11 +1,11 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  const whatsappNumber = "201004466279"; 
+  const whatsappNumber = "201004466279";
 
   const handleSend = () => {
     if (!name || !message) {
@@ -19,17 +19,18 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b  to-white p-6">
-      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-lg w-full ">
-        <h2 className="text-3xl font-bold text-amber-900 text-center mb-6">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b to-white p-4 sm:p-6">
+      <div className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 w-full max-w-md sm:max-w-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-amber-900 text-center mb-4 sm:mb-6">
           Contact Us
         </h2>
-        <p className="text-amber-900 text-center mb-6">
+        <p className="text-sm sm:text-base text-amber-900 text-center mb-6">
           Fill in the form below to send us a message on WhatsApp
         </p>
 
+        {/* Name */}
         <div className="mb-4">
-          <label className="block text-amber-900 mb-2 font-medium">
+          <label className="block text-amber-900 mb-2 font-medium text-sm sm:text-base">
             Your Name
           </label>
           <input
@@ -37,12 +38,13 @@ export default function Contact() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
-            className="w-full px-4 py-2 border outline-none rounded-lg   "
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg outline-none text-sm sm:text-base"
           />
         </div>
 
+        {/* Message */}
         <div className="mb-6">
-          <label className="block text-amber-900 mb-2 font-medium">
+          <label className="block text-amber-900 mb-2 font-medium text-sm sm:text-base">
             Message
           </label>
           <textarea
@@ -50,15 +52,16 @@ export default function Contact() {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type your message"
             rows={4}
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none "
+            className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:outline-none text-sm sm:text-base"
           ></textarea>
         </div>
 
+        {/* Button */}
         <button
           onClick={handleSend}
-          className="w-full flex items-center justify-center gap-2 bg-amber-900 hover:bg-amber-800 text-white font-semibold py-3 rounded-lg shadow-md transition-all duration-300"
+          className="w-full flex items-center justify-center gap-2 bg-amber-900 hover:bg-amber-800 text-white font-semibold py-2 sm:py-3 rounded-lg shadow-md transition-all duration-300 text-sm sm:text-base"
         >
-          <FaWhatsapp className="text-xl" /> Send on WhatsApp
+          <FaWhatsapp className="text-lg sm:text-xl" /> Send on WhatsApp
         </button>
       </div>
     </div>

@@ -102,8 +102,6 @@ console.log("totalQuantity", totalQuantity);
           <Link to="/shop" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Shop</Link>
           <Link to="/about" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">About Us</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Contact</Link>
-          <Link to="/tracking" onClick={() => setMenuOpen(false)} className="block hover:text-amber-400">Track Order</Link>
-
           {isLoggedIn ? (
             <button
               onClick={() => {

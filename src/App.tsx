@@ -17,8 +17,18 @@ import Thank from "./components/Thank";
 import AdminLogin from "./admin/AdminLogin";
 import AdminOrders from "./admin/AdminOrders";
 import CategoryPage from "./pages/CategoryPage";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+    useEffect(() => {
+    AOS.init({
+      duration: 2000, 
+      easing: "ease-in-out", 
+      once: false, 
+    });
+  }, []);
   return (
     <CartProvider>
       <Banner />

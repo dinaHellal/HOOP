@@ -40,6 +40,7 @@ export default function FeaturedCategories() {
   ];
   return (
     <section className="py-16 bg-white ">
+      
       <div className="container mx-auto px-4 ">
         <h2 className="text-3xl font-bold text-center mb-10 text-amber-900">Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-6  gap-5">
