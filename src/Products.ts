@@ -10,7 +10,7 @@ export const products = [
   {
     id: "2",
     title: "Princess",
-    price: "1,750",
+    price: 1750,
     description: "Elegant occasion dress",
     image: "/dress1.webp",
     images: ["/dress1.webp", "/dress2.webp", "/dress3.webp", "/dress4.webp", "/dress5.webp", "/dress6.webp", "/dress7.webp"],
@@ -18,7 +18,7 @@ export const products = [
   {
     id: "3",
     title: "Bisan",
-    price: "1,100",
+    price: 1100,
     description: "Everyday comfort",
     image: "/dress9.webp",
     images: ["/dress9.webp", "/dress8.webp", "/dress10.webp", "/dress11.webp", "/dress12.webp"],
@@ -26,7 +26,7 @@ export const products = [
   {
     id: "4",
     title: "Butterfly Set",
-    price: "1,200",
+    price: 1200,
     description: "Two piece outfit",
     image: "/set1.webp",
     images: ["/set1.webp", "/set2.webp", "/set3.webp", "/set4.webp", "/set5.webp"],
@@ -34,7 +34,7 @@ export const products = [
   {
     id: "5",
     title: "Bascota",
-    price: "1,100",
+    price: 1100,
     description: " Dress",
     image: "/dress19.webp",
     images: ["/dress19.webp", "/dress20.webp", "/dress21.webp", "/dress22.webp", "/dress23.webp"],
@@ -42,7 +42,7 @@ export const products = [
   {
     id: "6",
     title: "Twilight",
-    price: "750",
+    price: 750,
     description: "Skirt",
     image: "/jeb1.webp",
     images: ["/jeb1.webp", "/jeb2.webp", "/jeb3.webp"],
@@ -51,7 +51,7 @@ export const products = [
   {
     id: "7",
     title: "Flory",
-    price: "1,200",
+    price: 1200,
     description: "Dress",
     image: "/dress24.webp",
     images: ["/dress24.webp", "/dress25.webp", "/dress26.webp", "/dress27.webp"],
@@ -59,7 +59,7 @@ export const products = [
     {
     id: "8",
     title: "Warda",
-    price: "1,000",
+    price: 1000,
     description: "Dress",
     image: "/dress28.webp",
     images: ["/dress28.webp", "/dress29.webp", "/dress30.webp", "/dress31.webp", "/dress32.webp", "/dress33.webp"],
@@ -67,14 +67,14 @@ export const products = [
     {
     id: "9",
     title: "Niqap Hoop",
-    price: "450",
+    price: 450,
     description: "Hijab",
     image: "/niqap1.webp",
   },
       {
     id: "10",
     title: "Flora",
-    price: "1,200",
+    price: 1200,
     description: "Dress",
     image: "/dress13.webp",
     images: ["/dress13.webp", "/dress14.webp", "/dress15.webp", "/dress16.webp", "/dress17.webp", "/dress18.webp"],
@@ -82,15 +82,15 @@ export const products = [
     {
     id: "11",
     title: "Lilian",
-    price: "900",
+    price: 900,
     description: "Cardi",
-    image: "/kardy1.webp",
+    image: "/kardi1.webp",
     images: ["/kardy1.webp", "/kardy2.webp", "/kardy3.webp", "/kardy4.webp", "/kardy5.webp", "/kardy6.webp"],
   },
     {
     id: "12",
     title: "Layla",
-    price: "600",
+    price: 600,
     description: "Basic",
     image: "/basic1.webp",
     images: ["/basic1.webp", "/basic2.webp"],

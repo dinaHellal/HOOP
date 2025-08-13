@@ -2,6 +2,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import type { CustomArrowProps } from "react-slick";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 import Slider from "react-slick";
 function NextArrow(props: CustomArrowProps) {
@@ -28,7 +30,12 @@ export default function FeaturedCategories() {
     link: string;
     id: number;
   }
-
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    const savedLang = localStorage.getItem("language") || "en";
+    i18n.changeLanguage(savedLang);
+    document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
+  }, []);
   const categories: Category[] = [
     { id: 1, name: "Dresses", image: "/img29.webp", link: "/shop?category=derss" },
     { id: 2, name: "Hijab", image: "/img35.webp", link: "/shop?category=scarves" },
@@ -60,13 +67,13 @@ export default function FeaturedCategories() {
   return (
     <section className="py-16  ">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 text-amber-900">Categories</h2>
+        <h2 className="text-3xl font-bold text-center mb-10 text-amber-900">{t("categories")}</h2>
         <Slider {...settings}>
           {categories.map((cat) => (
             <a href={cat.link} key={cat.id} className="group bg-white rounded-xl overflow-hidden hover:shadow-lg transition mx-2">
               <img src={cat.image} alt={cat.name} className="w-full h-60 object-cover transition-transform group-hover:scale-105" />
               <div className="p-4 text-center">
-                <h3 className="text-lg font-semibold text-amber-900">{cat.name}</h3>
+                <h3 className="text-lg font-semibold text-amber-900">{t(cat.name)}</h3>
               </div>
             </a>
           ))}

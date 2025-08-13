@@ -1,0 +1,97 @@
+{
+  "Hoop": "حب",
+  "home": "الرئيسية",
+  "shopNow": "تسوق الآن",
+  "newArrivals": "وصلنا حديثاً",
+  "categories": "الفئات",
+  "shippingToAllPartsOfTheWorld": "الشحن إلى جميع أنحاء العالم",
+  "Shop": "التسوق",
+  "AboutUs": "من نحن",
+  "Contact": "اتصل بنا",
+  "Login": "تسجيل الدخول",
+  "Logout": "تسجيل الخروج",
+  "eleganceInEveryStitch": "أناقة في كل غرزة",
+  "exploreOurStylishAndModestCollectionNow": "استكشف تشكيلتنا الأنيقة والمحتشمة الآن.",
+  "ourFeaturedCategories": "فئاتنا المميزة",
+  "Dresses": "فساتين",
+  "Hijab": "حجاب",
+  "Set": "طقم",
+  "Scirt": "تنورة",
+  "Blouse": "بلوزة",
+  "Cardigan": "كارديجان",
+  "Basic": "أساسي",
+  "addToCart": "أضف إلى السلة",
+  "addedToCart": "تمت الإضافة إلى السلة",
+  "viewAllProducts": "عرض كل المنتجات",
+  "whyChooseUs": {
+    "title": "لماذا تختارنا؟",
+    "premiumQuality": {
+      "title": "جودة ممتازة",
+      "description": "نستخدم أفضل الأقمشة والخامات."
+    },
+    "fastShipping": {
+      "title": "شحن سريع",
+      "description": "توصيل سريع وموثوق لطلباتك."
+    },
+    "excellentSupport": {
+      "title": "دعم ممتاز",
+      "description": "فريقنا دائماً جاهز لمساعدتك."
+    }
+  },
+  "callToAction": {
+    "title": "هل أنت مستعدة لتطوير أسلوبك؟",
+    "subtitle": "اكتشفي إطلالتك المثالية مع تشكيلتنا المتنوعة.",
+    "buttonText": "ابدئي التسوق الآن"
+  },
+  "footer": {
+    "companyDescription": "الأناقة في كل غرزة. اكتشف تشكيلتنا الأنيقة والمحتشمة.",
+    "quickLinks": "روابط سريعة",
+    "links": {
+      "home": "الرئيسية",
+      "shop": "المتجر",
+      "aboutUs": "من نحن",
+      "contact": "اتصل بنا",
+      "privacyPolicy": "سياسة الخصوصية"
+    },
+    "contactInfo": "معلومات الاتصال",
+    "contact": {
+      "country": "مصر",
+      "email": "البريد الإلكتروني: info@hoop.com",
+      "phone": "الهاتف: .....",
+      "workingHours": "ساعات العمل: ......"
+    },
+    "newsletter": {
+      "title": "النشرة الإخبارية",
+      "description": "ابقَ على اطلاع بأحدث تشكيلاتنا وعروضنا.",
+      "placeholder": "عنوان بريدك الإلكتروني",
+      "subscribe": "اشتراك"
+    },
+    "rightsReserved": "جميع الحقوق محفوظة."
+  },
+  "shopAllProducts": "تصفح جميع المنتجات",
+  "browseOurCollection": "تصفح مجموعتنا الأنيقة والمحتشمة من الملابس.",
+  "welcomeTo": "مرحبًا بك في",
+  "destinationFashion": "وجهتك المثالية لأزياء النساء العصرية والأنيقة. مهمتنا هي تقديم أحدث الصيحات، وأفضل الأقمشة، وتصاميم فريدة تجعلك تشعرين بالثقة والجمال.",
+  "foundedWithLove": "تأسست بحب وشغف للأزياء، Hoop ليست مجرد متجر فقط – بل مكان يمكن لكل امرأة أن تجد فيه أسلوبها الخاص. سواء كنت تبحثين عن ملابس كاجوال، أو أزياء سهرة، أو إكسسوارات، نحن هنا من أجلك.",
+  "thankYouChoosingUs": "شكرًا لاختيارك لنا. نحن متحمسون لنكون جزءًا من رحلتك في عالم الأناقة!",
+  "aboutUs": "من نحن",
+  "contactUs": "اتصل بنا",
+  "fillFormWhatsApp": "املأ النموذج أدناه لإرسال رسالة لنا عبر واتساب",
+  "yourName": "اسمك",
+  "enterYourName": "أدخل اسمك",
+  "message": "الرسالة",
+  "typeYourMessage": "اكتب رسالتك",
+  "sendOnWhatsApp": "إرسال عبر واتساب",
+  "pleaseFillAllFields": "من فضلك أكمل جميع الحقول",
+  "helloMyNameIs": "مرحبًا، اسمي",
+  
+  "yourCartIsEmpty": "سلة التسوق فارغة",
+  "backToShopping": "العودة للتسوق",
+  "shoppingCart": "سلة التسوق",
+  "price": "السعر",
+  "total": "الإجمالي",
+  "checkout": "إتمام الشراء"
+,"cart": "السلة"
+
+
+}

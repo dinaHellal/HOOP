@@ -1,0 +1,99 @@
+{
+  "shippingToAllPartsOfTheWorld": "Shipping to all parts of the world",
+  "Hoop": "HOOP",
+  "home": "Home",
+  "shopNow": "Shop Now",
+  "newArrivals": "New Arrivals",
+  "categories": "Categories",
+  "Shop": "Shop",
+  "AboutUs": "About Us",
+  "Contact": "Contact",
+  "Login": "Login",
+  "Logout": "Log Out",
+
+  "eleganceInEveryStitch": "Elegance in Every Stitch",
+  "exploreOurStylishAndModestCollectionNow": "Explore our stylish and modest collection now.",
+  "ourFeaturedCategories": "Our Featured Categories",
+
+  "Dresses": "Dresses",
+  "Hijab": "Hijab",
+  "Set": "Set",
+  "Scirt": "Skirt",
+  "Blouse": "Blouse",
+  "Cardigan": "Cardigan",
+  "Basic": "Basic",
+  "addToCart": "Add to Cart",
+  "addedToCart": "Added To Cart",
+  "viewAllProducts": "View All Products",
+  "whyChooseUs": {
+    "title": "Why Choose Us?",
+    "premiumQuality": {
+      "title": "Premium Quality",
+      "description": "We source only the finest fabrics and materials."
+    },
+    "fastShipping": {
+      "title": "Fast Shipping",
+      "description": "Receive your order quickly and reliably."
+    },
+    "excellentSupport": {
+      "title": "Excellent Support",
+      "description": "Our team is always here to help you."
+    }
+  },
+  "callToAction": {
+    "title": "Ready to Elevate Your Style?",
+    "subtitle": "Discover your perfect look with our diverse collection.",
+    "buttonText": "Start Shopping Now"
+  },
+
+  "footer": {
+    "companyDescription": "Elegance in Every Stitch. Discover our stylish and modest collection.",
+    "quickLinks": "Quick Links",
+    "links": {
+      "home": "Home",
+      "shop": "Shop",
+      "aboutUs": "About Us",
+      "contact": "Contact",
+      "privacyPolicy": "Privacy Policy"
+    },
+    "contactInfo": "Contact Info",
+    "contact": {
+      "country": "Egypt",
+      "email": "Email: info@hoop.com",
+      "phone": "Phone: .....",
+      "workingHours": "Working Hours: ......"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Stay updated with our latest collections and offers.",
+      "placeholder": "Your email address",
+      "subscribe": "Subscribe"
+    },
+    "rightsReserved": "All rights reserved."
+  },
+  "shopAllProducts": "Shop All Products",
+  "browseOurCollection": "Browse through our elegant and modest collection of clothing.",
+    "welcomeTo": "Welcome to",
+  "destinationFashion": "your go-to destination for modern and stylish women's fashion. Our mission is to bring you the latest trends, top-quality fabrics, and unique designs that make you feel confident and beautiful.",
+  "foundedWithLove": "Founded with love and passion for fashion, Hoop is more than just a store – it’s a place where every woman can find her own style. Whether you’re looking for casual wear, evening outfits, or accessories, we’ve got you covered.",
+  "thankYouChoosingUs": "Thank you for choosing us. We’re excited to be part of your style journey!",
+  "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+  "fillFormWhatsApp": "Fill in the form below to send us a message on WhatsApp",
+  "yourName": "Your Name",
+  "enterYourName": "Enter your name",
+  "message": "Message",
+  "typeYourMessage": "Type your message",
+  "sendOnWhatsApp": "Send on WhatsApp",
+  "pleaseFillAllFields": "Please fill in all fields",
+"helloMyNameIs": "Hello, my name is",
+  "yourCartIsEmpty": "Your cart is empty",
+  "backToShopping": "Back to shopping",
+  "shoppingCart": "Shopping Cart",
+  "price": "Price",
+  "total": "Total",
+  "checkout": "Checkout",
+  "cart": "Cart"
+
+
+}
