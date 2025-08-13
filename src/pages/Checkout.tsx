@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Checkout() {
   const { cartItems, clearCart } = useCart();
@@ -9,33 +10,38 @@ export default function Checkout() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
-  const total = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1), 0);
+  const total = cartItems.reduce(
+    (acc, item) => acc + (Number(item.price) || 0) * (item.quantity ?? 1),
+    0
+  );
 
-const handleOrder = () => {
-  if (cartItems.length === 0 || total <= 0) {
-    alert("The cart is empty");
-    return;
-  }
+  useEffect(() => {
+    const savedLang = localStorage.getItem("language") || "en";
+    i18n.changeLanguage(savedLang);
+    document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
+  }, [i18n]);
 
-  if (!name || !email || !phone || !address) {
-    alert("Please fill in all customer details.");
-    return;
-  }
+  const handleOrder = () => {
+    if (cartItems.length === 0 || total <= 0) {
+      alert(t("emptyCart"));
+      return;
+    }
 
-  // التحقق من رقم الهاتف
-  const phoneRegex = /^01[0-9]{9}$/;
-  if (!phoneRegex.test(phone)) {
-    alert("the phone number must start with 01 and be 11 digits long.");
-    return;
-  }
+    if (!name || !email || !phone || !address) {
+      alert(t("fillDetails"));
+      return;
+    }
 
+    const phoneRegex = /^01[0-9]{9}$/;
+    if (!phoneRegex.test(phone)) {
+      alert(t("invalidPhone"));
+      return;
+    }
 
-
-
-    // generate order
     const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
-    const newId = `HOOP-${currentCounter}`;
+    const newId = `#${currentCounter}`;
 
     const newOrder = {
       id: newId,
@@ -53,44 +59,73 @@ const handleOrder = () => {
     localStorage.setItem("orders_counter", (currentCounter + 1).toString());
     localStorage.setItem("lastOrderId", newOrder.id);
 
+    // ✅ تجهيز تفاصيل المنتجات
+    const itemsDetails = cartItems
+      .map(
+        (item) =>
+          `• ${item.title} x ${item.quantity} = ${(
+            (Number(item.price) || 0) * (item.quantity ?? 1)
+          ).toFixed(2)} `
+      )
+      .join("\n");
+
+    // ✅ بناء الرسالة
     const message = `
 Order ID: ${newOrder.id}
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
-Total: $${total.toFixed(2)}
+------------------------
+Items:
+${itemsDetails}
+------------------------
+Total: ${total.toFixed(2)} ${t("currency")}
     `;
-    // open WhatsApp
-    window.open(`https://wa.me/201004466279?text=${encodeURIComponent(message)}`, "_blank");
 
-    clearCart(); 
+    // ✅ إرسال الرسالة لواتساب
+    window.open(
+      `https://wa.me/201004466279?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+
+    clearCart();
     navigate("/thank");
   };
 
   return (
     <div className="max-w-4xl mt-15 mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Checkout</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">{t("checkout")}</h1>
 
-      <h2 className="text-xl mb-2 font-semibold">Your Order</h2>
+      <h2 className="text-xl mb-2 font-semibold">{t("yourOrder")}</h2>
       <ul className="border rounded p-4 space-y-2 mb-6">
         {cartItems.map((item) => (
           <li key={item.id} className="flex justify-between md:flex-row flex-col ">
             <span>
               {item.title} x {item.quantity}
             </span>
-            <span>${Number(item.price) * (item.quantity ?? 1)}</span>
+            <span>{Number(item.price) * (item.quantity ?? 1)} {t("currency")}</span>
           </li>
         ))}
         <li className="flex justify-between font-bold pt-2 border-t mt-2">
-          <span>Total</span>
-          <span>${total.toFixed(2)}</span>
+          <span>{t("total")}</span>
+          <span>{total.toFixed(2)}  {t("currency")}</span>
         </li>
       </ul>
 
-      <h2 className="text-xl mb-2 font-semibold">Customer Details</h2>
+      <h2 className="text-xl mb-2 font-semibold">{t("customerDetails")}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="border p-3 rounded w-full" />
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="border p-3 rounded w-full" />
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder={t("fullName")}
+          className="border p-3 rounded w-full"
+        />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={t("email")}
+          className="border p-3 rounded w-full"
+        />
         <input
           value={phone}
           onChange={(e) => {
@@ -99,15 +134,23 @@ Total: $${total.toFixed(2)}
               setPhone(value);
             }
           }}
-          placeholder="Phone Number"
+          placeholder={t("phone")}
           className="border p-3 rounded w-full"
           maxLength={11}
         />
-        <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Full Address" className="border p-3 rounded w-full col-span-full" />
+        <input
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder={t("address")}
+          className="border p-3 rounded w-full col-span-full"
+        />
       </div>
 
-      <button onClick={handleOrder} className="bg-amber-900 text-white py-3 px-6 rounded w-full md:w-auto">
-        Place Order on WhatsApp
+      <button
+        onClick={handleOrder}
+        className="bg-amber-900 text-white py-3 px-6 rounded w-full md:w-full"
+      >
+        {t("placeOrder")}
       </button>
     </div>
   );

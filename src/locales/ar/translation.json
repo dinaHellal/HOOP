@@ -84,14 +84,55 @@
   "sendOnWhatsApp": "إرسال عبر واتساب",
   "pleaseFillAllFields": "من فضلك أكمل جميع الحقول",
   "helloMyNameIs": "مرحبًا، اسمي",
-  
-  "yourCartIsEmpty": "سلة التسوق فارغة",
-  "backToShopping": "العودة للتسوق",
-  "shoppingCart": "سلة التسوق",
-  "price": "السعر",
+
+  "cart": {
+    "empty": "سلة التسوق فارغة",
+    "backToShopping": "العودة للتسوق",
+    "title": "سلة المشتريات",
+    "total": "الإجمالي",
+    "checkout": "إتمام الشراء"
+  },
+  "productNotFound": "المنتج غير موجود",
+  "thankYouForRating": "شكراً لتقييمك!",
+  "currency": "ج.م",
+  "login": {
+    "title": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "show": "إظهار",
+    "hide": "إخفاء",
+    "rememberMe": "تذكرني",
+    "button": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "signUp": "إنشاء حساب"
+  },
+  "signup": {
+    "title": "إنشاء حساب",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "show": "إظهار",
+    "hide": "إخفاء",
+    "button": "إنشاء حساب",
+    "fillAllFields": "من فضلك أكمل جميع الحقول.",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول"
+  },
+  "yourOrder": "طلبك",
   "total": "الإجمالي",
-  "checkout": "إتمام الشراء"
-,"cart": "السلة"
-
-
+  "customerDetails": "بيانات العميل",
+  "fullName": "الاسم الكامل",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "address": "العنوان الكامل",
+  "placeOrder": "إرسال الطلب عبر واتساب",
+  "emptyCart": "سلة التسوق فارغة",
+  "fillAllDetails": "من فضلك أدخل جميع بيانات العميل.",
+  "invalidPhone": "يجب أن يبدأ رقم الهاتف بـ 01 ويتكون من 11 رقمًا.",
+  "orderId": "رقم الطلب",
+  "name": "الاسم",
+  "checkout": "إتمام الشراء",
+  "thankTitle": "شكراً لك!",
+  "thankMessage": "تم إرسال طلبك بنجاح عبر واتساب."
 }

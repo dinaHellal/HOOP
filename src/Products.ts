@@ -84,7 +84,7 @@ export const products = [
     title: "Lilian",
     price: 900,
     description: "Cardi",
-    image: "/kardi1.webp",
+    image: "/kardy1.webp",
     images: ["/kardy1.webp", "/kardy2.webp", "/kardy3.webp", "/kardy4.webp", "/kardy5.webp", "/kardy6.webp"],
   },
     {

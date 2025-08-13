@@ -103,7 +103,7 @@ export default function Navbar() {
 
         {/* -------- Mobile -------- */}
         <div className="md:hidden flex items-center gap-4">
-          <select onChange={handleLanguageChange} value={i18n.language} className="border border-amber-900 rounded px-2 py-1 text-amber-900">
+          <select onChange={handleLanguageChange} value={i18n.language} className="outline-none rounded px-2 py-1 text-amber-900">
             <option value="en">EN</option>
             <option value="ar">العربية</option>
           </select>

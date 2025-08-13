@@ -97,7 +97,7 @@ export default function Home() {
           {newArrivals.map((product) => (
             <div key={product.id} className="rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
               <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
-                <img src={product.image} alt={t(product.title)} className="w-full h-100 object-cover" />
+                <img src={product.image} alt={t(product.title)} className="w-full h-80  object-cover" />
               </div>
               <div className="p-4">
                 {/* العنوان */}
