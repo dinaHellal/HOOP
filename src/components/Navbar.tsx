@@ -44,7 +44,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3 text-2xl">
-          <img src="/hoop.webp" alt="logo" className="w-10 h-10 rounded-full object-cover" />
+          <Link to="/"><img src="/hoop.webp" alt="logo" className="w-10 h-10 rounded-full object-cover" /></Link>
           <Link to="/">{t("Hoop")}</Link>
         </div>
 
@@ -74,7 +74,7 @@ export default function Navbar() {
 
         {/* -------- Desktop -------- */}
         <div className="hidden md:flex items-center gap-4">
-          <select onChange={handleLanguageChange} value={i18n.language} className=" rounded-2xl border border-amber-900 px-2 py-1 text-amber-900">
+          <select onChange={handleLanguageChange} value={i18n.language} className="cursor-pointer rounded-2xl border border-amber-900 px-2 py-1 text-amber-900">
             <option value="en">EN</option>
             <option value="ar">العربية</option>
           </select>
@@ -90,13 +90,13 @@ export default function Navbar() {
                 setIsLoggedIn(false);
                 navigate("/login");
               }}
-              className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition"
+              className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm  transition"
             >
               Log Out
             </button>
           ) : (
             <Link to="/login">
-              <button className="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-800 text-sm transition">{t("Login")}</button>
+              <button className="bg-amber-900 text-white px-4 py-2 cursor-pointer rounded-lg hover:bg-amber-800 text-sm transition">{t("Login")}</button>
             </Link>
           )}
         </div>

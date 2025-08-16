@@ -118,7 +118,7 @@ export default function Home() {
                       toastId: `cart-${product.id}`,
                     });
                   }}
-                  className="w-full bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+                  className="w-full cursor-pointer bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
                 >
                   {t("addToCart")}
                 </button>
@@ -128,7 +128,7 @@ export default function Home() {
         </div>
 
         <div className="text-center mt-12">
-          <button onClick={() => navigate("/shop")} className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg transition">
+          <button onClick={() => navigate("/shop")} className="bg-[#242120] cursor-pointer hover:bg-[#383331] text-white px-8 py-3 rounded-lg text-lg transition">
             {t("viewAllProducts")}
           </button>
         </div>
@@ -200,27 +200,27 @@ export default function Home() {
             <h3 className="text-xl font-semibold mb-4">{t("footer.quickLinks")}</h3>
             <ul>
               <li className="mb-2">
-                <Link to="/" className="text-gray-800 hover:text-white transition">
+                <Link to="/" className="text-gray-800 transition">
                   {t("footer.links.home")}
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/shop" className="text-gray-800 hover:text-white transition">
+                <Link to="/shop" className="text-gray-800  transition">
                   {t("footer.links.shop")}
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/about" className="text-gray-800 hover:text-white transition">
+                <Link to="/about" className="text-gray-800  transition">
                   {t("footer.links.aboutUs")}
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/contact" className="text-gray-800 hover:text-white transition">
+                <Link to="/contact" className="text-gray-800  transition">
                   {t("footer.links.contact")}
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/privacy-policy" className="text-gray-800 hover:text-white transition">
+                <Link to="/privacy-policy" className="text-gray-800  transition">
                   {t("footer.links.privacyPolicy")}
                 </Link>
               </li>
@@ -244,7 +244,7 @@ export default function Home() {
               <input
                 type="email"
                 placeholder={t("footer.newsletter.placeholder")}
-                className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-amber-400 mb-3"
+                className="w-full p-3 rounded-md bg-[#383331] text-white  focus:outline-none focus:border-amber-400 mb-3"
               />
               <button type="submit" className="bg-amber-900 hover:bg-amber-800 text-white px-6 py-3 rounded-md w-full transition">
                 {t("footer.newsletter.subscribe")}

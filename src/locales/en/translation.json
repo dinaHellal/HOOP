@@ -135,5 +135,7 @@
   "orderId": "Order ID",
   "name": "Name",
   "thankTitle": "Thank you!",
-  "thankMessage": "Your order has been sent successfully via WhatsApp."
+  "thankMessage": "Your order has been sent successfully via WhatsApp.",
+  "Shipping": "Shipping",
+  "payNow": "Pay Now"
 }

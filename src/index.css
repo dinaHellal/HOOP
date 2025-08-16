@@ -8,3 +8,6 @@ body {
     scroll-behavior: smooth;
 
 }
+body[lang="ar"] {
+  font-family: "Cairo", sans-serif; /* للعربي */
+}

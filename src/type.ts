@@ -6,4 +6,6 @@ export type Product = {
   image: string;
   description: string;
   quantity?: number;
+    paymentLink?: string;
+
 };

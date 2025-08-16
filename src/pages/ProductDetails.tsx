@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { products } from "../Products";
 import { useCart } from "../context/CartContext";
-import { FiShoppingCart } from "react-icons/fi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRatings } from "../useRatings";
@@ -94,7 +93,8 @@ export default function ProductDetails() {
         </div>
 
         <p className="mt-4 text-2xl text-amber-800 font-bold">
-          {product.price} {t("currency")}
+          {product.price} {t("currency")}<br />
+          {product.shipping} {t("Shipping")}
         </p>
         <button
           onClick={() => {
@@ -104,11 +104,18 @@ export default function ProductDetails() {
               toastId: `cart-${product.id}`,
             });
           }}
-          className="cart text-white bg-amber-900 p-3 px-20 mt-4 rounded-2xl flex gap-4 text-center text-xl"
+          className="cart w-full mt-3 bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
         >
-          <FiShoppingCart />
           {t("addToCart")}
         </button>
+        {product.paymentLink && (
+          <button
+            onClick={() => window.open(product.paymentLink, "_blank")}
+            className="w-full mt-3 bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+          >
+            Pay Now
+          </button>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export default function About() {
 
   return (
     <div className="max-w-5xl mt-15 mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">{t("aboutUs")}</h1>
+      <h1 className="text-3xl font-bold text-amber-900 mb-6 text-center">{t("aboutUs")}</h1>
       <a
         href="https://wa.me/201004466279"
         target="_blank"

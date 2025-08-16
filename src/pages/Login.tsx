@@ -28,7 +28,7 @@ export default function Login() {
     <div className="flex justify-center items-center h-screen bg-coffee-light">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold text-coffee-dark mb-4">{t("login.title")}</h2>
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4 ">
           <div>
             <label className="block text-sm mb-1">{t("login.email")}</label>
             <input
