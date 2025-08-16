@@ -16,7 +16,7 @@ import { useCart } from "../context/CartContext";
 import { useEffect } from "react";
 const newArrivals: Product[] = [
   { id: "1", title: "Nesma", price: 550, image: "/blause1.webp", description: "Blouse", quantity: 1 },
-  { id: "2", title: "Princess", price: "1,750", image: "/dress5.webp", description: " Dress", quantity: 2 },
+  { id: "2", title: "Princess", price: 1750, image: "/dress5.webp", description: " Dress", quantity: 2 },
   { id: "3", title: "Bisan", price: 1100, image: "/dress11.webp", description: "Dress", quantity: 1 },
   { id: "4", title: "Butterfly Set", price: 1200, image: "/set5.webp", description: " Set", quantity: 1 },
   { id: "12", title: "Layla", price: 600, image: "/basic1.webp", description: "Basicc", quantity: 1 },
