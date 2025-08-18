@@ -46,6 +46,8 @@ function App() {
         <Route path="/thank" element={<Thank />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-orders" element={<AdminOrders />} />
+                <Route path="/product/:id" element={<ProductDetails />} /> 
+
       </Routes>
       <ToastContainer />
     </CartProvider>

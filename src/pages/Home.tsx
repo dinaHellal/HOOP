@@ -31,7 +31,8 @@ const newArrivals: Product[] = [
 
 export default function Home() {
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart, cartItems  ,  increaseQuantity,
+    decreaseQuantity,} = useCart();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -91,48 +92,74 @@ export default function Home() {
       </section>
 
       {/* ===== New Arrivals Section ===== */}
-      <section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-white">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">{t("newArrivals")}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {newArrivals.map((product) => (
-            <div key={product.id} className="rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
-              <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
-                <img src={product.image} alt={t(product.title)} className="w-full h-80  object-cover" />
-              </div>
-              <div className="p-4">
-                {/* العنوان */}
-                <h3 className="text-xl font-[cursive] text-amber-900 mb-1">{t(product.title)}</h3>
+<section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-white">
+  <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10">{t("newArrivals")}</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    {newArrivals.map((product) => {
+      const cartItem = cartItems.find((item) => item.id === product.id);
+      return (
+        <div key={product.id} className="rounded-xl overflow-hidden hover:shadow-lg transition duration-300">
+          <div className="cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
+            <img src={product.image} alt={t(product.title)} className="w-full h-80 object-cover" />
+          </div>
+          <div className="p-4">
+            {/* العنوان */}
+            <h3 className="text-xl font-[cursive] text-amber-900 mb-1">{t(product.title)}</h3>
 
-                {/* الوصف الصغير */}
-                <p className="text-gray-500 text-sm mb-2">{t(product.description)}</p>
+            {/* الوصف الصغير */}
+            <p className="text-gray-500 text-sm mb-2">{t(product.description)}</p>
 
-                {/* السعر */}
-                <p className="text-amber-900 text-xl font-bold mb-4">{product.price}eg</p>
+            {/* السعر */}
+            <p className="text-amber-900 text-xl font-bold mb-4">{product.price}{t("currency")}</p>
 
-                {/* زر الإضافة إلى السلة */}
+            {/* التحكم في السلة */}
+            {cartItem ? (
+              <div className="flex items-center gap-10  rounded-md px-3 py-2">
                 <button
-                  onClick={() => {
-                    addToCart({ ...product, price: Number(product.price) });
-                    toast.success(`${t(product.title)} ${t("addedToCart")}`, {
-                      autoClose: 1500,
-                      toastId: `cart-${product.id}`,
-                    });
-                  }}
-                  className="w-full cursor-pointer bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+                  onClick={() => decreaseQuantity(String(product.id))}
+                  className="px-2 py-1 font-bold bg-gray-200"
                 >
-                  {t("addToCart")}
+                  -
+                </button>
+                <span className="text-lg  font-bold">{cartItem.quantity}</span>
+                <button
+                  onClick={() => increaseQuantity(String(product.id))}
+                  className="px-2 py-1 font-bold bg-gray-200 "
+                >
+                  +
                 </button>
               </div>
-            </div>
-          ))}
+            ) : (
+              <button
+                onClick={() => {
+                  addToCart({ ...product, price: Number(product.price), quantity: 1 });
+                  toast.success(`${t(product.title)} ${t("addedToCart")}`, {
+                    autoClose: 1500,
+                    toastId: `cart-${product.id}`,
+                  });
+                }}
+                className="w-full cursor-pointer bg-amber-900 hover:bg-amber-800 text-white py-2 rounded-md font-semibold transition"
+              >
+                {t("addToCart")}
+              </button>
+            )}
+          </div>
         </div>
+      );
+    })}
+  </div>
 
-        <div className="text-center mt-12">
-          <button onClick={() => navigate("/shop")} className="bg-[#242120] cursor-pointer hover:bg-[#383331] text-white px-8 py-3 rounded-lg text-lg transition">
-            {t("viewAllProducts")}
-          </button>
-        </div>
-      </section>
+  <div className="text-center mt-12">
+    <button
+      onClick={() => navigate("/shop")}
+      className="bg-[#242120] cursor-pointer hover:bg-[#383331] text-white px-8 py-3 rounded-lg text-lg transition"
+    >
+      {t("viewAllProducts")}
+    </button>
+  </div>
+</section>
+
+
 
       {/* ===== Why Choose Us Section ===== */}
       <section data-aos="fade-up" className="py-16 px-4 md:px-8 lg:px-16 bg-[#f9f4f0]">

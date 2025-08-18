@@ -52,7 +52,7 @@ export default function CartDrawer() {
                 <img src={item.image} alt={item.title} className="w-16 h-16 object-cover" />
                 <div className="flex-1">
                   <h4 className="font-medium">{item.title}</h4>
-                  <p className="text-sm text-gray-600">${Number(item.price).toFixed(2)}</p>
+                  <p className="text-sm text-gray-600">{Number(item.price).toFixed(2)}{t("currency")}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <button
                       onClick={() => removeFromCart(String(item.id))}
@@ -68,7 +68,7 @@ export default function CartDrawer() {
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <p className="font-bold">
-                    ${(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}
+                    {(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}{t("currency")}
                   </p>
 
                   {/* Delete entire product */}
@@ -88,7 +88,7 @@ export default function CartDrawer() {
         <div className="p-4 border-t-2">
           <div className="flex justify-between mb-3 font-bold text-lg">
             <span>{t("cart.total")}</span>
-            <span>${total.toFixed(2)}</span>
+            <span>{total.toFixed(2)}{t("currency")}</span>
           </div>
           <button
             onClick={() => {

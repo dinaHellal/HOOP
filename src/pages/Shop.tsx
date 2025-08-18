@@ -52,7 +52,7 @@ export default function Shop() {
                   <span className="text-sm text-gray-500 ml-1">({count})</span>
                 </div>
 
-                <p className="text-amber-800 font-bold mt-2">${product.price}</p>
+                <p className="text-amber-800 font-bold mt-2">{product.price}</p>
 
                 {!isShown ? (
                   <button
