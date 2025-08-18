@@ -84,14 +84,6 @@
   "sendOnWhatsApp": "إرسال عبر واتساب",
   "pleaseFillAllFields": "من فضلك أكمل جميع الحقول",
   "helloMyNameIs": "مرحبًا، اسمي",
-
-  "cart": {
-    "empty": "سلة التسوق فارغة",
-    "backToShopping": "العودة للتسوق",
-    "title": "سلة المشتريات",
-    "total": "الإجمالي",
-    "checkout": "إتمام الشراء"
-  },
   "productNotFound": "المنتج غير موجود",
   "thankYouForRating": "شكراً لتقييمك!",
   "currency": "ج.م",
@@ -136,5 +128,11 @@
   "thankTitle": "شكراً لك!",
   "thankMessage": "تم إرسال طلبك بنجاح عبر واتساب.",
   "Shipping": "الشحن",
-  "payNow": "ادفع الآن"
+  "payNow": "ادفع الآن",
+    "cart": {
+    "title": "عربة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "total": "الإجمالي:",
+    "checkout": "إتمام الشراء"
+  }
 }

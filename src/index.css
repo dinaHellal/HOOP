@@ -9,5 +9,8 @@ body {
 
 }
 body[lang="ar"] {
-  font-family: "Cairo", sans-serif; /* للعربي */
+  font-family: "Cairo", sans-serif; 
+}
+button {
+  cursor: pointer;
 }
