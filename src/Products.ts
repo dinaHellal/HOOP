@@ -86,6 +86,7 @@ export const products = [
 
     description: "Hijab",
     image: "/niqap1.webp",
+    images: ["/niqap1.webp", "/niqap2.webp"],
   },
   {
     id: "10",

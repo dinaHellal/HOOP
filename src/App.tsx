@@ -22,11 +22,11 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 function App() {
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({
-      duration: 2000, 
-      easing: "ease-in-out", 
-      once: false, 
+      duration: 2000,
+      easing: "ease-in-out",
+      once: false,
     });
   }, []);
   return (
@@ -40,14 +40,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
-              <Route path="/category/:id" element={<CategoryPage />} />
+        <Route path="/category/:id" element={<CategoryPage />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/thank" element={<Thank />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-orders" element={<AdminOrders />} />
-                <Route path="/product/:id" element={<ProductDetails />} /> 
-
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <ToastContainer />
     </CartProvider>

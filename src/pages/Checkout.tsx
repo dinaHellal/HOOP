@@ -41,10 +41,8 @@ export default function Checkout() {
     }
 
     const currentCounter = Number(localStorage.getItem("orders_counter")) || 1;
-    const newId = `#${currentCounter}`;
 
     const newOrder = {
-      id: newId,
       name,
       phone,
       total,
@@ -57,9 +55,8 @@ export default function Checkout() {
     ordersArray.push(newOrder);
     localStorage.setItem("orders", JSON.stringify(ordersArray));
     localStorage.setItem("orders_counter", (currentCounter + 1).toString());
-    localStorage.setItem("lastOrderId", newOrder.id);
+    localStorage.setItem("lastOrderId", currentCounter.toString());
 
-    // ✅ تجهيز تفاصيل المنتجات
     const itemsDetails = cartItems
       .map(
         (item) =>
@@ -69,9 +66,7 @@ export default function Checkout() {
       )
       .join("\n");
 
-    // ✅ بناء الرسالة
     const message = `
-Order ID: ${newOrder.id}
 Name: ${name}
 Phone: ${phone}
 Address: ${address}
@@ -84,7 +79,7 @@ Total: ${total.toFixed(2)} ${t("currency")}
 
     // ✅ إرسال الرسالة لواتساب
     window.open(
-      `https://wa.me/201004466279?text=${encodeURIComponent(message)}`,
+      `https://wa.me/201114488488?text=${encodeURIComponent(message)}`,
       "_blank"
     );
 

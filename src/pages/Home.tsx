@@ -70,7 +70,7 @@ export default function Home() {
           ))}
         </Slider>
 
-        <a href="https://wa.me/201004466279" target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg  transition-all z-50">
+        <a href="https://wa.me/201114488488" target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-white text-green-500 p-4 rounded-full shadow-lg  transition-all z-50">
           <FaWhatsapp size={23} />
         </a>
 

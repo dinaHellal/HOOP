@@ -1,5 +1,5 @@
 {
-  "name": "Hoop Hijab Fashion",
+  "name": "Hoop",
   "short_name": "Hoop",
   "start_url": "/",
   "display": "standalone",
@@ -11,6 +11,15 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ]
+    },
+
+  {
+    "src": "/icon-512x512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any maskable"
+  }
+]
+
+  
 }

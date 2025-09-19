@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiShoppingCart, FiX, FiTrash2 } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,32 @@ export default function CartDrawer() {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const total = cartItems.reduce((acc, item) => acc + Number(item.price) * (item.quantity ?? 1), 0);
+  const total = cartItems.reduce(
+    (acc, item) => acc + Number(item.price) * (item.quantity ?? 1),
+    0
+  );
+
+  // ✅ قفل السكرول والتحكم في الكورسر
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("no-cursor");
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.classList.remove("no-cursor");
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.classList.remove("no-cursor");
+    };
+  }, [isOpen]);
 
   return (
     <>
       {/* Trigger */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center cursor-pointer hover:text-amber-500 gap-2 text-amber-900"
+        className="flex items-center hover:text-amber-500 gap-2 text-amber-900 clickable"
       >
         <FiShoppingCart size={24} />
       </button>
@@ -38,43 +56,62 @@ export default function CartDrawer() {
       >
         <div className="p-4 flex justify-between relative top-10 items-center">
           <h2 className="text-xl">{t("cart.title")}</h2>
-          <button onClick={() => setIsOpen(false)} className="text-2xl cursor-pointer font-bold">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-2xl cursor-pointer font-bold clickable"
+          >
             <FiX />
           </button>
         </div>
 
         <div className="p-4 space-y-4 overflow-y-auto h-[75%]">
           {cartItems.length === 0 ? (
-            <p className="text-gray-500 text-center mt-10">{t("cart.empty")}</p>
+            <p className="text-gray-500 text-center mt-10">
+              {t("cart.empty")}
+            </p>
           ) : (
             cartItems.map((item) => (
-              <div key={item.id} className="flex gap-3 items-center border-b pb-3">
-                <img src={item.image} alt={item.title} className="w-16 h-16 object-cover" />
+              <div
+                key={item.id}
+                className="flex gap-3 items-center border-b pb-3"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-16 h-16 object-cover"
+                />
                 <div className="flex-1">
                   <h4 className="font-medium">{item.title}</h4>
-                  <p className="text-sm text-gray-600">{Number(item.price).toFixed(2)}{t("currency")}</p>
+                  <p className="text-sm text-gray-600">
+                    {Number(item.price).toFixed(2)}
+                    {t("currency")}
+                  </p>
                   <div className="flex items-center gap-2 mt-1">
                     <button
                       onClick={() => removeFromCart(String(item.id))}
-                      className="px-2 py-1 bg-gray-200"
+                      className="px-2 py-1 bg-gray-200 clickable"
                     >
                       −
                     </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => addToCart(item)} className="px-2 py-1 bg-gray-200">
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="px-2 py-1 bg-gray-200 clickable"
+                    >
                       +
                     </button>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <p className="font-bold">
-                    {(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}{t("currency")}
+                    {(Number(item.price) * (item.quantity ?? 1)).toFixed(2)}
+                    {t("currency")}
                   </p>
 
                   {/* Delete entire product */}
                   <button
                     onClick={() => removeFromCart(String(item.id))}
-                    className="text-red-600"
+                    className="text-red-600 clickable"
                   >
                     <FiTrash2 size={18} />
                   </button>
@@ -88,14 +125,17 @@ export default function CartDrawer() {
         <div className="p-4 border-t-2">
           <div className="flex justify-between mb-3 font-bold text-lg">
             <span>{t("cart.total")}</span>
-            <span>{total.toFixed(2)}{t("currency")}</span>
+            <span>
+              {total.toFixed(2)}
+              {t("currency")}
+            </span>
           </div>
           <button
             onClick={() => {
               setIsOpen(false);
               navigate("/checkout");
             }}
-            className="w-full bg-amber-900 cursor-pointer text-white py-2 rounded-2xl"
+            className="w-full bg-amber-900 cursor-pointer text-white py-2 rounded-2xl clickable"
           >
             {t("cart.checkout")}
           </button>
